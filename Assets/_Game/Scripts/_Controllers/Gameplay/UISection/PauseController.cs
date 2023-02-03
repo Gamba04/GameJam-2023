@@ -7,13 +7,13 @@ public class PauseController : UISection
 {
     [Header("Components")]
     [SerializeField]
-    private GameObject root;
+    private Animator anim;
 
     #region Public Methods
 
     public override void SetVisible(bool value, bool instant = false)
     {
-        root.SetActive(value);
+
     }
 
     #endregion
