@@ -1546,19 +1546,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
         type: 3}
-      propertyPath: sfxClips.Array.data[0].clip
+      propertyPath: sfxClips.Array.data[1].name
+      value: 'ButtonClick: No clip (SFX)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
+        type: 3}
+      propertyPath: sfxClips.Array.data[1].mixer
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].name
-      value: 'Test: No clip'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].range
-      value: 10
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2587288233612014853, guid: d640524ee2dffbf499e4c45653985f7a,
+        type: 2}
     - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
         type: 3}
       propertyPath: sfxLoopAudioSources.Array.size
@@ -1568,11 +1564,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sfxLoopAudioSources.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651445869625062900, guid: babe09b129ab64540bde629b8f3b1b2e,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0].spatialBlend
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: babe09b129ab64540bde629b8f3b1b2e, type: 3}

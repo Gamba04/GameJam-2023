@@ -5,6 +5,9 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    [SerializeField]
+    private bool active = true;
+
     [Header("Components")]
     [SerializeField]
     private Rigidbody rb;
@@ -16,6 +19,8 @@ public abstract class Player : MonoBehaviour
     private float acceleration;
     [SerializeField]
     private float speed;
+
+    public bool Active { get => active; set => active = value; }
 
     #region Start
 

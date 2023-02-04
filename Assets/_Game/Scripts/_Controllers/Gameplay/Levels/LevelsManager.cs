@@ -47,6 +47,8 @@ public class LevelsManager : MonoBehaviour
         // Instantiate level
         currentLevel = Instantiate(level.level, levelParent);
         currentLevel.name = level.tag.ToString();
+
+        currentLevel.Init();
     }
 
     #endregion
