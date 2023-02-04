@@ -5,7 +5,11 @@ using UnityEngine;
 
 public enum LevelTag
 {
-    Overworld,
+    Left,
+    Hub,
+    Right,
+    Roots,
+    Tree,
 }
 
 [CreateAssetMenu(fileName = "LevelsSetup", menuName = "Setup/Levels Setup", order = 0)]
