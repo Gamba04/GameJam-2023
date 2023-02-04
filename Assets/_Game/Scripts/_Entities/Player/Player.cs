@@ -10,11 +10,11 @@ public abstract class Player : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]
-    private Rigidbody rb;
+    protected Rigidbody rb;
     [SerializeField]
     private PlayerInput input;
     [SerializeField]
-    private Animator anim;
+    protected Animator anim;
 
     [Header("Settings")]
     [SerializeField]
@@ -47,6 +47,7 @@ public abstract class Player : MonoBehaviour
     {
         input.onMovement += OnMovement;
         input.onJump += OnJump;
+        input.onSpecial += OnSpecial;
     }
 
     #endregion
@@ -86,29 +87,36 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnJump()
     {
+        if (!grounded) return;
+
         Vector3 velocity = rb.velocity;
 
         velocity.y = jumpSpeed;
 
         rb.velocity = velocity;
+
+        SetGrounded(false);
+    }
+
+    protected virtual void OnSpecial()
+    {
+        anim.SetTrigger("Special");
     }
 
     #endregion
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Collisions
+    #region Collision Detection
 
     private void OnCollisionEnter(Collision collision)
     {
         CheckGroundCollision(collision, () => SetGrounded(true));
-
     }
 
     private void OnCollisionStay(Collision collision)
     {
         CheckGroundCollision(collision, () => SetGrounded(true));
-
     }
 
     private void OnCollisionExit(Collision collision)
@@ -146,7 +154,7 @@ public abstract class Player : MonoBehaviour
     {
         grounded = value;
 
-        //anim.SetBool("Grounded", value);
+        anim.SetBool("Grounded", value);
     }
 
     #endregion
