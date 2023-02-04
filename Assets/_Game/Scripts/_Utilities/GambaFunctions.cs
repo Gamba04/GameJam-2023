@@ -112,6 +112,8 @@ public static class GambaFunctions
 
     public static bool RandomBool() => UnityEngine.Random.Range(0, 2) == 0;
 
+    public static float VolumeToDB(float volume) => volume > 0 ? Mathf.Log(volume) * 20 : float.MinValue;
+
     #endregion
 
     // -------------------------------------------------------------------------------------------------------------------
