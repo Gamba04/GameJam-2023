@@ -32,6 +32,10 @@ public abstract class Player : MonoBehaviour
 
     [Space]
     [SerializeField]
+    private float directionSpeed;
+
+    [Space]
+    [SerializeField]
     private int worldLayer;
     [SerializeField]
     private float groundCollisionHeight;
@@ -39,6 +43,8 @@ public abstract class Player : MonoBehaviour
     [Header("Info")]
     [ReadOnly, SerializeField]
     private bool grounded;
+    [ReadOnly, SerializeField]
+    private Vector3 targetDir;
 
     public bool Active { get => active; set => active = value; }
 
@@ -47,6 +53,8 @@ public abstract class Player : MonoBehaviour
     private void Start()
     {
         EventsStart();
+
+        OtherStart();
     }
 
     private void EventsStart()
@@ -54,6 +62,29 @@ public abstract class Player : MonoBehaviour
         input.onMovement += OnMovement;
         input.onJump += OnJump;
         input.onSpecial += OnSpecial;
+    }
+
+    private void OtherStart()
+    {
+        targetDir = transform.forward;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Update
+
+    private void Update()
+    {
+        DirectionUpdate();
+    }
+
+    private void DirectionUpdate()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Min(directionSpeed * Time.deltaTime, 1));
     }
 
     #endregion
@@ -65,6 +96,8 @@ public abstract class Player : MonoBehaviour
     protected virtual void OnMovement(Vector2 input)
     {
         input.Normalize();
+
+        SetDirection(input);
 
         // Get velocity
         Vector2 velocity = new Vector2(rb.velocity.x, rb.velocity.z);
@@ -156,6 +189,13 @@ public abstract class Player : MonoBehaviour
         grounded = value;
 
         anim.SetBool("Grounded", value);
+    }
+
+    private void SetDirection(Vector2 direction)
+    {
+        if (direction == Vector2.zero) return;
+
+        targetDir = new Vector3(direction.x, 0, direction.y);
     }
 
     #endregion

@@ -153,9 +153,11 @@ MonoBehaviour:
   speed: 4
   jumpSpeed: 10
   terminalVelocity: 7
+  directionSpeed: 10
   worldLayer: 11
   groundCollisionHeight: 0.1
   grounded: 0
+  targetDir: {x: 0, y: 0, z: 0}
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 4dcce830d91921449b80620afc837ab3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4dcce830d91921449b80620afc837ab3,
         type: 3}
