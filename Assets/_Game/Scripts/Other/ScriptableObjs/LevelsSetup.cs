@@ -14,15 +14,19 @@ public class LevelsSetup : ScriptableObject
     #region Serializable
 
     [Serializable]
-    private class LevelModel
+    public class LevelModel
     {
         [SerializeField, HideInInspector] private string name;
 
-        [SerializeField]
-        private Level level;
+        [HideInInspector]
+        public LevelTag tag;
+
+        public Level level;
 
         public void SetName(LevelTag tag)
         {
+            this.tag = tag;
+
             name = tag.ToString();
         }
     }
@@ -35,6 +39,10 @@ public class LevelsSetup : ScriptableObject
     [Space]
     [SerializeField]
     private List<LevelModel> levels;
+
+    public LevelModel GetCurrentLevel() => levels[(int)currentLevel];
+
+    public LevelModel GetLevel(LevelTag tag) => levels[(int)tag];
 
     #region Editor
 
