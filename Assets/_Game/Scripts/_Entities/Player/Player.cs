@@ -20,9 +20,19 @@ public abstract class Player : MonoBehaviour
     [SerializeField]
     private float acceleration;
     [SerializeField]
+    private float groundDeceleration;
+    [SerializeField]
+    private float airDeceleration;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private float terminalVelocity;
+
+    [Space]
+    [SerializeField]
+    private float directionSpeed;
 
     [Space]
     [SerializeField]
@@ -33,6 +43,8 @@ public abstract class Player : MonoBehaviour
     [Header("Info")]
     [ReadOnly, SerializeField]
     private bool grounded;
+    [ReadOnly, SerializeField]
+    private Vector3 targetDir;
 
     public bool Active { get => active; set => active = value; }
 
@@ -41,6 +53,8 @@ public abstract class Player : MonoBehaviour
     private void Start()
     {
         EventsStart();
+
+        OtherStart();
     }
 
     private void EventsStart()
@@ -48,6 +62,29 @@ public abstract class Player : MonoBehaviour
         input.onMovement += OnMovement;
         input.onJump += OnJump;
         input.onSpecial += OnSpecial;
+    }
+
+    private void OtherStart()
+    {
+        targetDir = transform.forward;
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Update
+
+    private void Update()
+    {
+        DirectionUpdate();
+    }
+
+    private void DirectionUpdate()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Min(directionSpeed * Time.deltaTime, 1));
     }
 
     #endregion
@@ -59,6 +96,8 @@ public abstract class Player : MonoBehaviour
     protected virtual void OnMovement(Vector2 input)
     {
         input.Normalize();
+
+        SetDirection(input);
 
         // Get velocity
         Vector2 velocity = new Vector2(rb.velocity.x, rb.velocity.z);
@@ -76,13 +115,16 @@ public abstract class Player : MonoBehaviour
             // Deceleration
             float currentSpeed = velocity.magnitude;
 
-            currentSpeed -= acceleration * Time.deltaTime;
+            currentSpeed -= (grounded ? groundDeceleration : airDeceleration) * Time.deltaTime;
             currentSpeed = Mathf.Max(currentSpeed, 0);
 
             velocity = velocity.normalized * currentSpeed;
         }
 
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
+        float yVelocity = rb.velocity.y;
+        yVelocity = Mathf.Max(yVelocity, -terminalVelocity);
+
+        rb.velocity = new Vector3(velocity.x, yVelocity, velocity.y);
     }
 
     protected virtual void OnJump()
@@ -111,17 +153,17 @@ public abstract class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(true));
+        CheckGroundCollision(collision, belowHeight => SetGrounded(belowHeight));
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(true));
+        CheckGroundCollision(collision, belowHeight => SetGrounded(belowHeight));
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(false), false);
+        CheckGroundCollision(collision, belowHeight => SetGrounded(false));
     }
 
     #endregion
@@ -130,23 +172,15 @@ public abstract class Player : MonoBehaviour
 
     #region Other
 
-    private void CheckGroundCollision(Collision collision, Action onCollision, bool checkHeight = true)
+    private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
     {
         if (collision.collider.gameObject.layer == worldLayer) // World
         {
-            if (checkHeight)
-            {
-                List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
+            List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
 
-                if (contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight))
-                {
-                    onCollision?.Invoke();
-                }
-            }
-            else
-            {
-                onCollision?.Invoke();
-            }
+            bool belowHeight = contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight);
+
+            onCollision?.Invoke(belowHeight);
         }
     }
 
@@ -155,6 +189,13 @@ public abstract class Player : MonoBehaviour
         grounded = value;
 
         anim.SetBool("Grounded", value);
+    }
+
+    private void SetDirection(Vector2 direction)
+    {
+        if (direction == Vector2.zero) return;
+
+        targetDir = new Vector3(direction.x, 0, direction.y);
     }
 
     #endregion
@@ -178,8 +219,8 @@ public abstract class Player : MonoBehaviour
 
         Vector3 pivot = Vector3.up * groundCollisionHeight;
 
-        Gizmos.DrawLine(pivot + Vector3.forward * width, pivot + Vector3.back * width);
-        Gizmos.DrawLine(pivot + Vector3.left * width, pivot + Vector3.right * width);
+        Gizmos.DrawLine(transform.position + pivot + Vector3.forward * width, transform.position + pivot + Vector3.back * width);
+        Gizmos.DrawLine(transform.position + pivot + Vector3.left * width, transform.position + pivot + Vector3.right * width);
     }
 
 #endif
