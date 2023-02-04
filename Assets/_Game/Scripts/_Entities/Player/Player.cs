@@ -101,18 +101,16 @@ public abstract class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Collisions
+    #region Collision Detection
 
     private void OnCollisionEnter(Collision collision)
     {
         CheckGroundCollision(collision, () => SetGrounded(true));
-
     }
 
     private void OnCollisionStay(Collision collision)
     {
         CheckGroundCollision(collision, () => SetGrounded(true));
-
     }
 
     private void OnCollisionExit(Collision collision)
