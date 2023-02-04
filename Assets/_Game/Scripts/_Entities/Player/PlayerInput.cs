@@ -5,6 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     public event Action<Vector2> onMovement;
     public event Action onJump;
+    public event Action onSpecial;
 
     #region Update
 
@@ -12,6 +13,7 @@ public class PlayerInput : MonoBehaviour
     {
         MovementUpdate();
         JumpUpdate();
+        SpecialUpdate();
     }
 
     private void MovementUpdate()
@@ -27,6 +29,11 @@ public class PlayerInput : MonoBehaviour
     private void JumpUpdate()
     {
         if (Input.GetButtonDown("Jump")) onJump?.Invoke();
+    }
+
+    private void SpecialUpdate()
+    {
+        if (Input.GetButtonDown("Special")) onSpecial?.Invoke();
     }
 
     #endregion

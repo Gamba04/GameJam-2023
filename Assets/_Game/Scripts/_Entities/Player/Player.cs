@@ -10,11 +10,11 @@ public abstract class Player : MonoBehaviour
 
     [Header("Components")]
     [SerializeField]
-    private Rigidbody rb;
+    protected Rigidbody rb;
     [SerializeField]
     private PlayerInput input;
     [SerializeField]
-    private Animator anim;
+    protected Animator anim;
 
     [Header("Settings")]
     [SerializeField]
@@ -47,6 +47,7 @@ public abstract class Player : MonoBehaviour
     {
         input.onMovement += OnMovement;
         input.onJump += OnJump;
+        input.onSpecial += OnSpecial;
     }
 
     #endregion
@@ -95,6 +96,11 @@ public abstract class Player : MonoBehaviour
         rb.velocity = velocity;
 
         SetGrounded(false);
+    }
+
+    protected virtual void OnSpecial()
+    {
+        anim.SetTrigger("Special");
     }
 
     #endregion
