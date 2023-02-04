@@ -1,9 +1,11 @@
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class MenuFuncs : MonoBehaviour
 {
     
     private Vector2 xPos = new Vector2(2200, 0);
+    private Vector2 yPos = new Vector2(0, 5000);
     private Vector2 currentPos = Vector2.zero;
 
 
@@ -39,6 +41,12 @@ public class MenuFuncs : MonoBehaviour
     {
         currentPos -= xPos;
         TransitionTo(currentPos);
+    }
+    public void TransitionUp()
+    {
+        currentPos -= yPos;
+        transitionPos.StartTransition(currentPos);
+        MenuUI.GoToGameplay();
     }
 }
 
