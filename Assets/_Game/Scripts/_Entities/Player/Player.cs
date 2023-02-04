@@ -20,6 +20,10 @@ public abstract class Player : MonoBehaviour
     [SerializeField]
     private float acceleration;
     [SerializeField]
+    private float groundDeceleration;
+    [SerializeField]
+    private float airDeceleration;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float jumpSpeed;
@@ -76,7 +80,7 @@ public abstract class Player : MonoBehaviour
             // Deceleration
             float currentSpeed = velocity.magnitude;
 
-            currentSpeed -= acceleration * Time.deltaTime;
+            currentSpeed -= (grounded ? groundDeceleration : airDeceleration) * Time.deltaTime;
             currentSpeed = Mathf.Max(currentSpeed, 0);
 
             velocity = velocity.normalized * currentSpeed;
@@ -111,17 +115,17 @@ public abstract class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(true));
+        CheckGroundCollision(collision, belowHeight => SetGrounded(belowHeight));
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(true));
+        CheckGroundCollision(collision, belowHeight => SetGrounded(belowHeight));
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        CheckGroundCollision(collision, () => SetGrounded(false), false);
+        CheckGroundCollision(collision, belowHeight => SetGrounded(false));
     }
 
     #endregion
@@ -130,23 +134,15 @@ public abstract class Player : MonoBehaviour
 
     #region Other
 
-    private void CheckGroundCollision(Collision collision, Action onCollision, bool checkHeight = true)
+    private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
     {
         if (collision.collider.gameObject.layer == worldLayer) // World
         {
-            if (checkHeight)
-            {
-                List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
+            List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
 
-                if (contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight))
-                {
-                    onCollision?.Invoke();
-                }
-            }
-            else
-            {
-                onCollision?.Invoke();
-            }
+            bool belowHeight = contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight);
+
+            onCollision?.Invoke(belowHeight);
         }
     }
 
@@ -178,8 +174,8 @@ public abstract class Player : MonoBehaviour
 
         Vector3 pivot = Vector3.up * groundCollisionHeight;
 
-        Gizmos.DrawLine(pivot + Vector3.forward * width, pivot + Vector3.back * width);
-        Gizmos.DrawLine(pivot + Vector3.left * width, pivot + Vector3.right * width);
+        Gizmos.DrawLine(transform.position + pivot + Vector3.forward * width, transform.position + pivot + Vector3.back * width);
+        Gizmos.DrawLine(transform.position + pivot + Vector3.left * width, transform.position + pivot + Vector3.right * width);
     }
 
 #endif

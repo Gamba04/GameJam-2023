@@ -41,7 +41,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: ffd1ab41ab1c2dd4cabc8cb41e1209b0, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -147,11 +147,13 @@ MonoBehaviour:
   rb: {fileID: 4409055434628808975}
   input: {fileID: 4409055434628808974}
   anim: {fileID: 226887785598550628}
-  acceleration: 20
-  speed: 6
-  jumpSpeed: 18
+  acceleration: 30
+  groundDeceleration: 30
+  airDeceleration: 10
+  speed: 4
+  jumpSpeed: 10
   worldLayer: 11
-  groundCollisionHeight: 0.5
+  groundCollisionHeight: 0.1
   grounded: 0
 --- !u!114 &4409055434628808974
 MonoBehaviour:

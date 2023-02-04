@@ -598,7 +598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
   offset: {x: 0, y: 5, z: -10}
-  speed: 8
+  speed: 7
   activePlayer: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!20 &519420031
