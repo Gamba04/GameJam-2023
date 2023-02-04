@@ -146,10 +146,10 @@ MonoBehaviour:
   active: 1
   rb: {fileID: 4409055434628808975}
   input: {fileID: 4409055434628808974}
-  anim: {fileID: 0}
+  anim: {fileID: 226887785598550628}
   acceleration: 20
   speed: 6
-  jumpSpeed: 0
+  jumpSpeed: 10
   worldLayer: 11
   groundCollisionHeight: 0.5
   grounded: 0

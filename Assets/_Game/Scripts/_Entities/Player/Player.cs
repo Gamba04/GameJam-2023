@@ -86,11 +86,15 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnJump()
     {
+        if (!grounded) return;
+
         Vector3 velocity = rb.velocity;
 
         velocity.y = jumpSpeed;
 
         rb.velocity = velocity;
+
+        SetGrounded(false);
     }
 
     #endregion
@@ -146,7 +150,7 @@ public abstract class Player : MonoBehaviour
     {
         grounded = value;
 
-        //anim.SetBool("Grounded", value);
+        anim.SetBool("Grounded", value);
     }
 
     #endregion
