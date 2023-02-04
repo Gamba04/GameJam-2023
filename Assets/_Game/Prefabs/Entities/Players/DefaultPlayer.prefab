@@ -152,6 +152,7 @@ MonoBehaviour:
   airDeceleration: 10
   speed: 4
   jumpSpeed: 10
+  terminalVelocity: 7
   worldLayer: 11
   groundCollisionHeight: 0.1
   grounded: 0

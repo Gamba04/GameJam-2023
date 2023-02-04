@@ -27,6 +27,8 @@ public abstract class Player : MonoBehaviour
     private float speed;
     [SerializeField]
     private float jumpSpeed;
+    [SerializeField]
+    private float terminalVelocity;
 
     [Space]
     [SerializeField]
@@ -86,7 +88,10 @@ public abstract class Player : MonoBehaviour
             velocity = velocity.normalized * currentSpeed;
         }
 
-        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
+        float yVelocity = rb.velocity.y;
+        yVelocity = Mathf.Max(yVelocity, -terminalVelocity);
+
+        rb.velocity = new Vector3(velocity.x, yVelocity, velocity.y);
     }
 
     protected virtual void OnJump()
