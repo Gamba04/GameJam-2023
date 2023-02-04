@@ -15,4 +15,5 @@ MonoBehaviour:
   currentLevel: 0
   levels:
   - name: Overworld
-    level: {fileID: 4225359159197176644, guid: 6fa815df1e071c2409f5768ad2c2717a, type: 3}
+    tag: 0
+    level: {fileID: 2924592073438289173, guid: b037abe7242acd54eae32f030e0b6e5b, type: 3}
