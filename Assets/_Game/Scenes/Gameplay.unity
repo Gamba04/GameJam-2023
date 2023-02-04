@@ -681,7 +681,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  currentRatio: 1.7764705
+  currentRatio: 1.7759434
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
