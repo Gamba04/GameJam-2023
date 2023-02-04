@@ -9,16 +9,16 @@ public class SettingsFunc : MonoBehaviour
     
     public void SetMaster(float value)
     {
-        audioMixer.SetFloat("Master", value);
+        audioMixer.SetFloat("Master", GambaFunctions.VolumeToDB(value));
     }
 
     public void SetSFX(float value)
     {
-        audioMixer.SetFloat("SFX", value);
+        audioMixer.SetFloat("SFX", GambaFunctions.VolumeToDB(value));
     }
 
     public void SetMusic(float value)
     {
-        audioMixer.SetFloat("Music", value);
+        audioMixer.SetFloat("Music", GambaFunctions.VolumeToDB(value));
     }
 }
