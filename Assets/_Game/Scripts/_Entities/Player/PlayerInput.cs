@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -17,12 +15,12 @@ public class PlayerInput : MonoBehaviour
 
     private void MovementUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(horizontal, vertical);
 
-        if (movement != Vector2.zero) onMovement?.Invoke(movement);
+        onMovement?.Invoke(movement);
     }
 
     #endregion

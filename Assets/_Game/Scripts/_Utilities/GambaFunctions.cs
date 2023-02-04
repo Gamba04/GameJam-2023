@@ -112,18 +112,6 @@ public static class GambaFunctions
 
     public static bool RandomBool() => UnityEngine.Random.Range(0, 2) == 0;
 
-    public static void SetMagnitude(this Vector2 vector, float magnitude)
-    {
-        Vector2 value = vector.normalized * magnitude;
-        vector.Set(value.x, value.y);
-    }
-
-    public static void SetMagnitude(this Vector3 vector, float magnitude)
-    {
-        Vector3 value = vector.normalized * magnitude;
-        vector.Set(value.x, value.y, value.z);
-    }
-
     #endregion
 
     // -------------------------------------------------------------------------------------------------------------------

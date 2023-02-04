@@ -16,8 +16,6 @@ public abstract class Player : MonoBehaviour
     private float acceleration;
     [SerializeField]
     private float speed;
-    [SerializeField]
-    private float deceleration;
 
     #region Start
 
@@ -36,10 +34,12 @@ public abstract class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Input
+    #region Mechanics
 
     protected virtual void OnMovement(Vector2 input)
     {
+        input.Normalize();
+
         // Get velocity
         Vector2 velocity = new Vector2(rb.velocity.x, rb.velocity.z);
 
@@ -49,18 +49,20 @@ public abstract class Player : MonoBehaviour
             velocity += input * acceleration * Time.deltaTime;
 
             // Speed limit
-            if (velocity.magnitude > speed) velocity.SetMagnitude(speed);
+            if (velocity.magnitude > speed) velocity = velocity.normalized * speed;
         }
         else // Braking
         {
             // Deceleration
             float currentSpeed = velocity.magnitude;
 
-            currentSpeed -= deceleration * Time.deltaTime;
+            currentSpeed -= acceleration * Time.deltaTime;
             currentSpeed = Mathf.Max(currentSpeed, 0);
 
-            velocity.SetMagnitude(currentSpeed);
+            velocity = velocity.normalized * currentSpeed;
         }
+
+        rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.y);
     }
 
     protected virtual void OnJump()
