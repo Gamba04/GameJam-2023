@@ -62,8 +62,7 @@ public class GplayManager : MonoBehaviour
 
     private void OnStart()
     {
-        Timer.CallOnDelay(() => SetPause(true), 2);
-        Timer.CallOnDelayUnscaled(() => SetPause(false), 5);
+
     }
 
     #endregion
