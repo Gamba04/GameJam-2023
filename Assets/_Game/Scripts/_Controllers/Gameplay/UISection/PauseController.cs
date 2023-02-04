@@ -55,6 +55,13 @@ public class PauseController : UISection
         }
     }
 
+    public void Resume()
+    {
+        GplayManager.SetPause(false);
+    }
+    
+    
+
     #endregion
 
     // ----------------------------------------------------------------------------------------------------------------------------
