@@ -646,7 +646,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  currentRatio: 1.7759434
+  currentRatio: 1.6682577
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1586,6 +1586,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330197920334725544, guid: 0dc590d00d9e7d24d80207289576f35d,
+        type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 20363271}
+    - target: {fileID: 8330197920334725544, guid: 0dc590d00d9e7d24d80207289576f35d,
+        type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330197920334725544, guid: 0dc590d00d9e7d24d80207289576f35d,
+        type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GplayUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8728648388928526598, guid: 0dc590d00d9e7d24d80207289576f35d,
         type: 3}

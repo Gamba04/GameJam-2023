@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GplayUI : UIManager
 {
+    private const int menuIndex = 0;
+
     [Header("Components")]
     [Header("GplayUI")]
     [SerializeField]
@@ -37,6 +39,17 @@ public class GplayUI : UIManager
     {
         Instance.hudController.SetVisible(!value);
         Instance.pauseController.SetVisible(value);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void GoToMenu()
+    {
+        SetInteractions(false);
+
+        SetFade(true, false, () => GambaFunctions.LoadScene(menuIndex));
     }
 
     #endregion
