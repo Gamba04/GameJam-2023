@@ -30,6 +30,10 @@
             "color" : "#52FFBA"
         },
         {
+            "path" : "Assets/_Game/Graphics/Models",
+            "color" : "#A590C0"
+        },
+        {
             "path" : "Assets/_Game/Prefabs",
             "color" : "#52B4FF"
         },
