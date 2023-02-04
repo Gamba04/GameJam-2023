@@ -382,6 +382,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6390702795473382540, guid: e2f13037caa26a5419d2866dc32754bc,
+        type: 3}
+      propertyPath: m_Text
+      value: Master
+      objectReference: {fileID: 0}
     - target: {fileID: 8513786465829310403, guid: e2f13037caa26a5419d2866dc32754bc,
         type: 3}
       propertyPath: m_Value
@@ -762,6 +767,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6390702795473382540, guid: e2f13037caa26a5419d2866dc32754bc,
+        type: 3}
+      propertyPath: m_Text
+      value: Music
+      objectReference: {fileID: 0}
     - target: {fileID: 8513786465829310403, guid: e2f13037caa26a5419d2866dc32754bc,
         type: 3}
       propertyPath: m_Value
@@ -916,6 +926,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390702795473382540, guid: e2f13037caa26a5419d2866dc32754bc,
+        type: 3}
+      propertyPath: m_Text
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 8513786465829310403, guid: e2f13037caa26a5419d2866dc32754bc,
         type: 3}
