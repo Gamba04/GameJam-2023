@@ -16,6 +16,8 @@ public class LevelsManager : MonoBehaviour
     [ReadOnly, SerializeField]
     private Level currentLevel;
 
+    public event Action<Player> onSetActivePlayer;
+
     #region Init
 
     public void Init()
@@ -47,6 +49,8 @@ public class LevelsManager : MonoBehaviour
         // Instantiate level
         currentLevel = Instantiate(level.level, levelParent);
         currentLevel.name = level.tag.ToString();
+
+        currentLevel.onSetActivePlayer += onSetActivePlayer;
 
         currentLevel.Init();
     }

@@ -11,6 +11,8 @@ public class GplayManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private LevelsManager levelsManager;
+    [SerializeField]
+    private CameraController cameraController;
 
     public static bool Debugs => instance != null ? instance.debugs : true;
 
@@ -66,7 +68,14 @@ public class GplayManager : MonoBehaviour
 
     private void OnStart()
     {
+        EventsSetup();
+
         levelsManager.Init();
+    }
+
+    private void EventsSetup()
+    {
+        levelsManager.onSetActivePlayer += cameraController.SetActivePlayer;
     }
 
     #endregion

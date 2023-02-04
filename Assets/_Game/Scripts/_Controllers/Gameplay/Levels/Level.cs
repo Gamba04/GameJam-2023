@@ -13,6 +13,8 @@ public class Level : MonoBehaviour
     [ReadOnly, SerializeField]
     private Player activePlayer;
 
+    public event Action<Player> onSetActivePlayer;
+
     #region Init
 
     public void Init()
@@ -24,7 +26,22 @@ public class Level : MonoBehaviour
     {
         if (players.Count == 0) throw new Exception("No players assigned");
 
-        players.ForEach((player, index) => player.Active = index == 0);
+        SetActivePlayer(players[0]);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Other
+
+    private void SetActivePlayer(Player player)
+    {
+        activePlayer = player;
+
+        players.ForEach(p => p.Active = p == player);
+
+        onSetActivePlayer?.Invoke(player);
     }
 
     #endregion
