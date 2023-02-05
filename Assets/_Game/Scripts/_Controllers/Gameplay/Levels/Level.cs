@@ -7,7 +7,11 @@ public class Level : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private List<Player> players;
+    private Player startingPlayer;
+    [SerializeField]
+    private List<Root> roots;
+    [SerializeField]
+    private Transform playersParent;
 
     [Header("Info")]
     [ReadOnly, SerializeField]
@@ -19,14 +23,18 @@ public class Level : MonoBehaviour
 
     public void Init()
     {
-        SetupPlayers();
+        SetActivePlayer(startingPlayer);
+        RootsSetup();
     }
 
-    private void SetupPlayers()
+    private void RootsSetup()
     {
-        if (players.Count == 0) throw new Exception("No players assigned");
+        foreach (Root root in roots)
+        {
+            root.Init(playersParent);
 
-        SetActivePlayer(players[0]);
+            root.onSetActivePlayer += SetActivePlayer;
+        }
     }
 
     #endregion
@@ -38,8 +46,6 @@ public class Level : MonoBehaviour
     private void SetActivePlayer(Player player)
     {
         activePlayer = player;
-
-        players.ForEach(p => p.Active = p == player);
 
         onSetActivePlayer?.Invoke(player);
     }
