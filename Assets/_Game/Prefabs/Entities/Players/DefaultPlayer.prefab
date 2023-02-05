@@ -152,7 +152,7 @@ MonoBehaviour:
   airDeceleration: 10
   speed: 4
   jumpSpeed: 10
-  terminalVelocity: 7
+  terminalVelocity: 15
   directionSpeed: 10
   interactableMask:
     serializedVersion: 2
