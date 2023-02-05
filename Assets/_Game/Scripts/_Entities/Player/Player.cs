@@ -61,7 +61,7 @@ public abstract class Player : MonoBehaviour
 
     private bool groundedLeeway;
 
-    private IInteractable Enabled;
+    private IInteractable interactable;
 
     protected virtual float TerminalVelocity => terminalVelocity;
 
@@ -120,14 +120,14 @@ public abstract class Player : MonoBehaviour
         {
             IInteractable target = collider.GetComponentInParent<IInteractable>();
 
-            if (target != null && Enabled.Enabled)
+            if (target != null && target.Enabled)
             {
-                Enabled = target;
+                interactable = target;
                 break;
             }
         }
 
-        GplayUI.OnSetInteractionOverlay(Enabled != null);
+        GplayUI.OnSetInteractionOverlay(interactable != null);
     }
 
     #endregion
@@ -237,7 +237,7 @@ public abstract class Player : MonoBehaviour
     {
         if (!InputsEnabled) return;
 
-        Enabled?.Interact(this);
+        interactable?.Interact(this);
     }
 
     private void OnSpecial()
