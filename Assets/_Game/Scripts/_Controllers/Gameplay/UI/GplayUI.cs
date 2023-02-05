@@ -15,6 +15,8 @@ public class GplayUI : UIManager
     private PauseController pauseController;
     [SerializeField]
     private GameObject interactPrompt;
+    [SerializeField]
+    private DialogueController dialogueController;
 
     #region Singleton Override
 
@@ -49,6 +51,11 @@ public class GplayUI : UIManager
     public static void OnSetInteractionOverlay(bool value)
     {
         Instance.interactPrompt.SetActive(value);
+    }
+
+    public static void SetDialogue(List<MessageInfo> list)
+    {
+        Instance.dialogueController.SetDialogue(list);
     }
 
     #endregion
