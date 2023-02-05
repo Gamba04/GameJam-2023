@@ -29,6 +29,8 @@ public class GplayUI : UIManager
         base.OnStart();
 
         Instance.pauseController.SetVisible(false, true);
+
+        OnSetInteractionOverlay(false);
     }
 
     #endregion
