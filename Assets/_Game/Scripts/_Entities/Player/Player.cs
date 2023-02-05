@@ -12,9 +12,6 @@ public abstract class Player : MonoBehaviour
         Special
     }
 
-    [SerializeField]
-    private bool active = true;
-
     [Header("Components")]
     [SerializeField]
     protected Rigidbody rb;
@@ -67,8 +64,6 @@ public abstract class Player : MonoBehaviour
 
     protected virtual bool InputsEnabled => state == State.Normal;
 
-    public bool Active { get => active; set => active = value; }
-
     #region Start
 
     private void Start()
@@ -89,8 +84,6 @@ public abstract class Player : MonoBehaviour
     private void OtherStart()
     {
         targetDir = transform.forward;
-
-        Unroot(); // Temp
     }
 
     #endregion
@@ -107,6 +100,8 @@ public abstract class Player : MonoBehaviour
 
     private void DirectionUpdate()
     {
+        if (state == State.NoInput) return;
+
         Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Min(directionSpeed * Time.deltaTime, 1));
@@ -114,6 +109,8 @@ public abstract class Player : MonoBehaviour
 
     private void InteractableUpdate()
     {
+        if (state == State.NoInput) return;
+
         interactable = null;
 
         List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactableMask));

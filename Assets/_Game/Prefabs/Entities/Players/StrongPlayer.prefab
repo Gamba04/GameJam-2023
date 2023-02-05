@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b80c8ab25c936445aaf2646144395d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
   rb: {fileID: 4409055434628808975}
   input: {fileID: 4409055434628808974}
   anim: {fileID: 226887785598550628}
@@ -233,6 +232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 811cbac072bf6044a939cb67aff6eabc,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 811cbac072bf6044a939cb67aff6eabc,
         type: 3}
