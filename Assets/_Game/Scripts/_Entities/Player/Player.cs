@@ -237,7 +237,7 @@ public abstract class Player : MonoBehaviour
     {
         if (!InputsEnabled) return;
 
-        interactable?.Interact(this);
+        interactable?.Interact();
     }
 
     private void OnSpecial()

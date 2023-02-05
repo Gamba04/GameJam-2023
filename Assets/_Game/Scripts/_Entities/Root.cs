@@ -44,12 +44,9 @@ public class Root : MonoBehaviour, IInteractable
 
     #region IInteractable
 
-    public void Interact(Player player)
+    public void Interact()
     {
-        player.Root();
-        this.player.Unroot();
-
-        onSetActivePlayer?.Invoke(this.player);
+        onSetActivePlayer?.Invoke(endPoint.player);
     }
 
     #endregion

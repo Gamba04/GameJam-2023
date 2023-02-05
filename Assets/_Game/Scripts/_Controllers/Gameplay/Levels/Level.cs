@@ -13,6 +13,10 @@ public class Level : MonoBehaviour
     [SerializeField]
     private Transform playersParent;
 
+    [Header("Settings")]
+    [SerializeField]
+    private float rootDelay;
+
     [Header("Info")]
     [ReadOnly, SerializeField]
     private Player activePlayer;
@@ -45,9 +49,12 @@ public class Level : MonoBehaviour
 
     private void SetActivePlayer(Player player)
     {
-        activePlayer = player;
+        activePlayer.Root();
+        Timer.CallOnDelay(() => player.Unroot(), rootDelay, "Root transition");
 
         onSetActivePlayer?.Invoke(player);
+
+        activePlayer = player;
     }
 
     #endregion

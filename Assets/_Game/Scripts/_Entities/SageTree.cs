@@ -24,7 +24,7 @@ public class SageTree : MonoBehaviour, IInteractable
         GplayUI.SetDialogue(queue.Dequeue().Messages);
     }
 
-    public void Interact(Player player)
+    public void Interact()
     {
         Pop();
     }
