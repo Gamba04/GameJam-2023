@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Game/Graphics/Materials/Blocks/Rock.mat.meta
+guid: 23a883795149dd2459fd28635ace3cf6
+========
 guid: ef47c88f2ab8f814294f131e8132db3a
+>>>>>>>> LevelDesign:Assets/_Game/Graphics/Materials/Blocks/D Forest Lower.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

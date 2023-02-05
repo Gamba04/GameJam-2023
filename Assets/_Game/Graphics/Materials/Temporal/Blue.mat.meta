@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Game/Graphics/Materials/Temporal/Blue.mat.meta
 guid: adf59e9c86aa70540b093b1c5ba5c977
+========
+guid: c4599469175e4f14ea2a27ff72e6a938
+>>>>>>>> LevelDesign:Assets/_Game/Graphics/Materials/Blocks/D Forest Upper.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

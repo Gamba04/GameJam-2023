@@ -9,8 +9,7 @@ public abstract class Player : MonoBehaviour
     {
         NoInput,
         Normal,
-        Special,
-        Rooted
+        Special
     }
 
     [SerializeField]
@@ -91,7 +90,7 @@ public abstract class Player : MonoBehaviour
     {
         targetDir = transform.forward;
 
-        ChangeState(State.Normal); // Temp
+        Unroot(); // Temp
     }
 
     #endregion
@@ -162,10 +161,6 @@ public abstract class Player : MonoBehaviour
             case State.Special:
                 anim.SetBool("Special", true);
                 break;
-
-            case State.Rooted:
-                anim.SetBool("Burried", true);
-                break;
         }
     }
 
@@ -183,10 +178,6 @@ public abstract class Player : MonoBehaviour
 
             case State.Special:
                 anim.SetBool("Special", false);
-                break;
-
-            case State.Rooted:
-                anim.SetBool("Burried", false);
                 break;
         }
     }
@@ -246,7 +237,7 @@ public abstract class Player : MonoBehaviour
     {
         if (!InputsEnabled) return;
 
-        interactable?.Interact(this);
+        interactable?.Interact();
     }
 
     private void OnSpecial()
@@ -290,11 +281,15 @@ public abstract class Player : MonoBehaviour
 
     public void Root()
     {
-        ChangeState(State.Rooted);
+        anim.SetBool("Rooted", true);
+
+        ChangeState(State.NoInput);
     }
 
     public void Unroot()
     {
+        anim.SetBool("Rooted", false);
+
         ChangeState(State.Normal);
     }
 

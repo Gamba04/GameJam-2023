@@ -6,7 +6,7 @@ public class GayserButton : MonoBehaviour , IInteractable
 {
     [SerializeField] 
     private Gaysers gayser;
-    public void Interact(Player player)
+    public void Interact()
     {
         gayser.SetState(!gayser.GetState());
     }

@@ -40,4 +40,5 @@ public class DialogueSetup : ScriptableObject
 
     #endregion
 
+    public List<MessageInfo> Messages => messages;
 }
