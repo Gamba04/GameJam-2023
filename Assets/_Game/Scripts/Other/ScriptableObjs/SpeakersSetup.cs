@@ -6,7 +6,9 @@ using UnityEngine;
 public enum DialogueSpeaker
 {
     SageTree,
-    Mushroom,
+    Mushroom1,
+    Mushroom2,
+    Mushroom3,
     Player
 }
 

@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class DialogueController : MonoBehaviour
 {
     [SerializeField]
+    private SpeakersSetup speakersSetup;
+    [SerializeField]
     private Text subtitle;
     [SerializeField]
     private Text speaker;
@@ -17,7 +19,7 @@ public class DialogueController : MonoBehaviour
     private int idx = 0;
     private List<MessageInfo> dialogues;
     private bool drawing = false;
-
+    
     public event Action onFinishedDialogue;
 
     public void Update()
@@ -55,11 +57,11 @@ public class DialogueController : MonoBehaviour
 
     private IEnumerator DrawDialogue(MessageInfo msgInfo)
     {
-        SFXPlayer.PlayRandomSFX(msgInfo.voices);
-
+        SFXPlayer.PlayRandomSFX(speakersSetup.GetSpeaker(msgInfo.speaker).voices);
+        
         drawing = true;
-        speaker.text = msgInfo.speaker;
-        speaker.color = msgInfo.color; 
+        speaker.text = speakersSetup.GetSpeaker(msgInfo.speaker).name;
+        speaker.color = speakersSetup.GetSpeaker(msgInfo.speaker).color; 
 
         foreach (char c in msgInfo.message)
         {
