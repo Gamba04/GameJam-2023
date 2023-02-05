@@ -8,10 +8,9 @@ public class MessageInfo
 {
     [SerializeField, HideInInspector] private string name;
 
-    public string speaker;
+    public DialogueSpeaker speaker;
     public string message;
-    public Color color;
-    public List<SFXTag> voices;
+
 
     public void SetName()
     {
