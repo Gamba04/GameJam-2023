@@ -17,6 +17,8 @@ public class AerialPlayer : Player, IGaiserInteractable
 
     protected override float TerminalVelocity => state == State.Special ? specialTerminalVelocity : base.TerminalVelocity;
 
+    protected override bool InputsEnabled => true;
+
     #region Mechanics
 
     protected override void Special()
@@ -47,11 +49,9 @@ public class AerialPlayer : Player, IGaiserInteractable
 
     #region Other
 
-    protected override void SetGrounded(bool value)
+    protected override void OnSetGrounded(bool value)
     {
-        base.SetGrounded(value);
-
-        //if (value) ChangeState(State.Normal);
+        if (value) ChangeState(State.Normal);
     }
 
     #endregion

@@ -164,10 +164,9 @@ MonoBehaviour:
   grounded: 0
   targetDir: {x: 0, y: 0, z: 0}
   specialJumpSpeed: 10
-  specialTerminalVelocity: 3
+  specialTerminalVelocity: 2
   specialLeeway: 0.1
   gaiserImpulse: 15
-  message: []
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0
