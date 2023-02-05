@@ -138,7 +138,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f7c8b567fea544bb5bac977bef9df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  startingPlayer: {fileID: 0}
+  roots: []
+  playersParent: {fileID: 9190573406195704597}
+  rootDelay: 2
   activePlayer: {fileID: 0}
 --- !u!1 &6934723293526251615
 GameObject:
