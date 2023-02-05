@@ -5,6 +5,14 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    private enum State
+    {
+        NoInput,
+        Normal,
+        Special,
+        Rooted
+    }
+
     [SerializeField]
     private bool active = true;
 
@@ -45,6 +53,8 @@ public abstract class Player : MonoBehaviour
     private float groundCollisionHeight;
 
     [Header("Info")]
+    [ReadOnly, SerializeField]
+    private State state;
     [ReadOnly, SerializeField]
     private bool grounded;
     [ReadOnly, SerializeField]
@@ -117,6 +127,66 @@ public abstract class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
+    #region States
+
+    private void ChangeState(State state)
+    {
+        if (this.state == state) return;
+
+        OnStateExit(this.state);
+        OnStateEnter(state);
+
+        this.state = state;
+    }
+
+    private void OnStateEnter(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Special:
+                anim.SetTrigger("Special");
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", true);
+                break;
+        }
+    }
+
+    private void OnStateExit(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Special:
+
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", false);
+                break;
+        }
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Mechanics
 
     protected virtual void OnMovement(Vector2 input)
@@ -157,18 +227,19 @@ public abstract class Player : MonoBehaviour
     {
         if (!grounded) return;
 
-        Vector3 velocity = rb.velocity;
-
-        velocity.y = jumpSpeed;
-
-        rb.velocity = velocity;
-
-        SetGrounded(false);
+        Jump(jumpSpeed);
     }
 
-    protected virtual void OnSpecial()
+    private void OnSpecial()
     {
-        anim.SetTrigger("Special");
+        if (state != State.Special && !grounded) return;
+
+        Special();
+    }
+
+    protected virtual void Special()
+    {
+        ChangeState(State.Special);
     }
 
     protected virtual void OnInteract()
@@ -203,9 +274,14 @@ public abstract class Player : MonoBehaviour
 
     #region Public Methods
 
-    public void Bury()
+    public void Root()
     {
+        ChangeState(State.Rooted);
+    }
 
+    public void Unroot()
+    {
+        ChangeState(State.Normal);
     }
 
     #endregion
@@ -213,6 +289,17 @@ public abstract class Player : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Other
+
+    protected void Jump(float speed)
+    {
+        Vector3 velocity = rb.velocity;
+
+        velocity.y = speed;
+
+        rb.velocity = velocity;
+
+        SetGrounded(false);
+    }
 
     private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
     {

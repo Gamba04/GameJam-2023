@@ -160,8 +160,11 @@ MonoBehaviour:
   interactionRadius: 4
   worldLayer: 11
   groundCollisionHeight: 0.1
+  state: 0
   grounded: 0
   targetDir: {x: 0, y: 0, z: 0}
+  superJumpDelay: 1
+  superJumpSpeed: 20
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0

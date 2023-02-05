@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public abstract class UIManager : MonoBehaviour
 {
+    [SerializeField]
+    private FadeColorsSetup fadeColorsSetup;
+
     [Header("Components")]
     [SerializeField]
     protected Canvas canvas;
@@ -15,8 +18,6 @@ public abstract class UIManager : MonoBehaviour
     protected bool startWithFade = true;
     [SerializeField]
     protected TransitionColor fadeTransition;
-    [SerializeField]
-    protected Color fadeColor = Color.white;
 
     public static Canvas Canvas => Instance.canvas;
 
@@ -58,8 +59,8 @@ public abstract class UIManager : MonoBehaviour
 
         SetInteractions(false);
 
-        SetFade(true, true);
-        SetFade(false, onTransitionEnd: () => SetInteractions(true));
+        SetFade(true, FadeColor.Default, true);
+        SetFade(false, FadeColor.Default, onTransitionEnd: () => SetInteractions(true));
     }
 
     #endregion
@@ -142,8 +143,10 @@ public abstract class UIManager : MonoBehaviour
         }
     }
 
-    public static void SetFade(bool visible, bool instant = false, Action onTransitionEnd = null)
+    public static void SetFade(bool visible, FadeColor fadeColor, bool instant = false, Action onTransitionEnd = null)
     {
+        Color color = Instance.fadeColorsSetup.GetColor(fadeColor);
+
         ButtonBase.Interactable = false;
 
         if (visible)
@@ -162,14 +165,14 @@ public abstract class UIManager : MonoBehaviour
 
         if (instant)
         {
-            Color color = visible ? Instance.fadeColor : Instance.fadeColor.GetAlpha(0);
+            Color target = visible ? color : color.GetAlpha(0);
 
-            Instance.fadeTransition.value = color;
-            Instance.fade.color = color;
+            Instance.fadeTransition.value = target;
+            Instance.fade.color = target;
 
             onTransitionEnd?.Invoke();
         }
-        else Instance.fadeTransition.StartTransition(visible ? Instance.fadeColor : Instance.fadeColor.GetAlpha(0), onTransitionEnd);
+        else Instance.fadeTransition.StartTransition(visible ? color : color.GetAlpha(0), onTransitionEnd);
     }
 
 

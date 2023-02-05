@@ -217,8 +217,8 @@ RectTransform:
   m_Children:
   - {fileID: 2054727564}
   - {fileID: 2027136935}
-  - {fileID: 20856590}
   - {fileID: 1469406405}
+  - {fileID: 20856590}
   m_Father: {fileID: 301562769}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42d14a15545a8a4c8973c542cb851e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeColorsSetup: {fileID: 11400000, guid: ed4144cff4fe88d4f8ad0a14155dcde2, type: 2}
   canvas: {fileID: 20363269}
   fade: {fileID: 1311800587}
   startWithFade: 1
@@ -270,7 +271,6 @@ MonoBehaviour:
     duration: 1
     value: {r: 0, g: 0, b: 0, a: 0}
     isOnTransition: 0
-  fadeColor: {r: 1, g: 1, b: 1, a: 1}
   hudController: {fileID: 2054727565}
   pauseController: {fileID: 2027136936}
   interactPrompt: {fileID: 432972224}
@@ -304,7 +304,7 @@ RectTransform:
   - {fileID: 1311800586}
   - {fileID: 1402126744}
   m_Father: {fileID: 20363270}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1262,7 +1262,7 @@ Transform:
   - {fileID: 1374666326}
   - {fileID: 1902086914}
   m_Father: {fileID: 20363270}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1469406406
 MonoBehaviour:

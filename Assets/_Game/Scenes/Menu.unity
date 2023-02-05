@@ -218,7 +218,7 @@ RectTransform:
   - {fileID: 1214170951}
   - {fileID: 20856590}
   m_Father: {fileID: 301562769}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4041d1c34e5b764bb3fa74d3629adea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeColorsSetup: {fileID: 11400000, guid: ed4144cff4fe88d4f8ad0a14155dcde2, type: 2}
   canvas: {fileID: 20363269}
   fade: {fileID: 1311800587}
   startWithFade: 0
@@ -268,7 +269,6 @@ MonoBehaviour:
     duration: 1
     value: {r: 0, g: 0, b: 0, a: 0}
     isOnTransition: 0
-  fadeColor: {r: 0.191, g: 0.16218022, b: 0.135419, a: 1}
 --- !u!1 &20856589
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +734,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 301562769}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &260287928
 Camera:
@@ -806,9 +806,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 473618246}
   - {fileID: 260287926}
   - {fileID: 20363270}
+  - {fileID: 473618246}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1039,7 +1039,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 301562769}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &473618247
 MonoBehaviour:
@@ -1145,7 +1145,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  currentRatio: 1.746615
+  currentRatio: 1.7759434
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
