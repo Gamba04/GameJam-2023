@@ -5,6 +5,13 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    private enum State
+    {
+        NoInput,
+        Normal,
+        Rooted
+    }
+
     [SerializeField]
     private bool active = true;
 
@@ -45,6 +52,8 @@ public abstract class Player : MonoBehaviour
     private float groundCollisionHeight;
 
     [Header("Info")]
+    [ReadOnly, SerializeField]
+    private State state;
     [ReadOnly, SerializeField]
     private bool grounded;
     [ReadOnly, SerializeField]
@@ -111,6 +120,58 @@ public abstract class Player : MonoBehaviour
         }
 
         GplayUI.OnSetInteractionOverlay(interactable != null);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region States
+
+    private void ChangeState(State state)
+    {
+        if (this.state == state) return;
+
+        OnStateExit(this.state);
+        OnStateEnter(state);
+
+        this.state = state;
+    }
+
+    private void OnStateEnter(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", true);
+                break;
+        }
+    }
+
+    private void OnStateExit(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", false);
+                break;
+        }
     }
 
     #endregion
@@ -203,9 +264,14 @@ public abstract class Player : MonoBehaviour
 
     #region Public Methods
 
-    public void Bury()
+    public void Root()
     {
+        ChangeState(State.Rooted);
+    }
 
+    public void Unroot()
+    {
+        ChangeState(State.Normal);
     }
 
     #endregion
