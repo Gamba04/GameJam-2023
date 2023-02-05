@@ -312,6 +312,8 @@ public abstract class Player : MonoBehaviour
         rb.velocity = velocity;
 
         SetGrounded(false);
+
+        anim.SetTrigger("Jump");
     }
 
     private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
@@ -355,6 +357,8 @@ public abstract class Player : MonoBehaviour
 
     private void SetDirection(Vector2 direction)
     {
+        anim.SetBool("Walking", direction != Vector2.zero);
+
         if (direction == Vector2.zero) return;
 
         targetDir = new Vector3(direction.x, 0, direction.y);
