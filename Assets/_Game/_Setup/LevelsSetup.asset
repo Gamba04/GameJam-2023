@@ -16,7 +16,7 @@ MonoBehaviour:
   levels:
   - name: Left
     tag: 0
-    level: {fileID: 2924592073438289173, guid: b037abe7242acd54eae32f030e0b6e5b, type: 3}
+    level: {fileID: 2924592073438289173, guid: a3c82bb2bc23f0c4182bfaa76adf9356, type: 3}
   - name: Hub
     tag: 1
     level: {fileID: 2924592073438289173, guid: c2cbf1395a387a64099c06e217f0ea4e, type: 3}

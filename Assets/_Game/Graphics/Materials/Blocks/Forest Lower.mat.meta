@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Game/Graphics/Materials/Blocks/Forest Lower.mat.meta
 guid: dcc3263594628924c99e57931259b065
+========
+guid: b315ff40b995a8a43b44955a1a28cb64
+>>>>>>>> LevelDesign:Assets/_Game/Graphics/Materials/Blocks/Forest Upper.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

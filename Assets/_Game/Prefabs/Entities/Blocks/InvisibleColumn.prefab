@@ -10,7 +10,11 @@ PrefabInstance:
     - target: {fileID: 1014981561491104796, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
       propertyPath: m_Name
+<<<<<<<< HEAD:Assets/_Game/Prefabs/Entities/Blocks/InvisibleColumn.prefab
       value: InvisibleColumn
+========
+      value: Red Cap
+>>>>>>>> LevelDesign:Assets/_Game/Prefabs/Entities/Blocks/Red Cap.prefab
       objectReference: {fileID: 0}
     - target: {fileID: 1014981561491104799, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
@@ -67,15 +71,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<<< HEAD:Assets/_Game/Prefabs/Entities/Blocks/InvisibleColumn.prefab
     - target: {fileID: 1453016020432558977, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+========
+>>>>>>>> LevelDesign:Assets/_Game/Prefabs/Entities/Blocks/Red Cap.prefab
     - target: {fileID: 2941179588387856696, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
+<<<<<<<< HEAD:Assets/_Game/Prefabs/Entities/Blocks/InvisibleColumn.prefab
       objectReference: {fileID: 2100000, guid: c4599469175e4f14ea2a27ff72e6a938, type: 2}
     - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
@@ -86,6 +94,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 7
+========
+      objectReference: {fileID: 2100000, guid: 778089d1cc82beb40a257e2bb74717f0, type: 2}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+>>>>>>>> LevelDesign:Assets/_Game/Prefabs/Entities/Blocks/Red Cap.prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 312a0d6f816e469479445e44d3cb7d2a, type: 3}

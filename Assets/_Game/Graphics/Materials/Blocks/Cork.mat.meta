@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Game/Graphics/Materials/Blocks/Cork.mat.meta
 guid: 824515c160baaaa40b15029e1e2ee22a
+========
+guid: dcc3263594628924c99e57931259b065
+>>>>>>>> LevelDesign:Assets/_Game/Graphics/Materials/Blocks/Forest Lower.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
