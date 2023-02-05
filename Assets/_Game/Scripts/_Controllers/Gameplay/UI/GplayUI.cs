@@ -16,6 +16,8 @@ public class GplayUI : UIManager
     [SerializeField]
     private GameObject interactPrompt;
     [SerializeField]
+    private GameObject specialPrompt;
+    [SerializeField]
     private DialogueController dialogueController;
 
     #region Singleton Override
@@ -33,6 +35,7 @@ public class GplayUI : UIManager
         Instance.pauseController.SetVisible(false, true);
 
         OnSetInteractionOverlay(false);
+        OnSetSpecialOverlay(false);
     }
 
     #endregion
@@ -51,6 +54,12 @@ public class GplayUI : UIManager
     public static void OnSetInteractionOverlay(bool value)
     {
         Instance.interactPrompt.SetActive(value);
+    }
+
+    /// <summary> Set UI overlay for special available. </summary>
+    public static void OnSetSpecialOverlay(bool value)
+    {
+        Instance.specialPrompt.SetActive(value);
     }
 
     public static void SetDialogue(List<MessageInfo> list)

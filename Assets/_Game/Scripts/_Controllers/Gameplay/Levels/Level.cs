@@ -69,6 +69,8 @@ public class Level : MonoBehaviour
         Timer.CallOnDelay(() => player.Unroot(), rootDelay, onCancelPlayerSwitch, "Root transition");
 
         onSetActivePlayer?.Invoke(player);
+
+        GplayUI.OnSetInteractionOverlay(false);
     }
 
     private void OnLoadLevel(LevelTag levelTag)
