@@ -13,6 +13,8 @@ public class Root : MonoBehaviour, IInteractable
 
     [Header("Settings")]
     [SerializeField]
+    private bool startOccupied;
+    [SerializeField]
     private Vector3 playerOffset;
 
     private Transform playersParent;
@@ -27,7 +29,7 @@ public class Root : MonoBehaviour, IInteractable
     {
         this.playersParent = playersParent;
 
-        CreatePlayer();
+        if (startOccupied) CreatePlayer();
     }
 
     private void CreatePlayer()
@@ -44,9 +46,17 @@ public class Root : MonoBehaviour, IInteractable
 
     #region IInteractable
 
-    public void Interact()
+    public bool Enabled => player == null;
+
+    public void Interact(Player player)
     {
+        this.player = player;
+
+        player.Root();
+
         onSetActivePlayer?.Invoke(endPoint.player);
+
+        endPoint.player = null;
     }
 
     #endregion
