@@ -53,7 +53,6 @@ public class DialogControler : MonoBehaviour
         if (Input.GetButtonDown("Skip"))
         {
             StartDialogue();
-            print("input");
         }
     }
 
@@ -74,7 +73,6 @@ public class DialogControler : MonoBehaviour
             }
             else
             {
-                print("finished");
                 onFinishedDialogue?.Invoke();
                 speaker.text = "";
                 subtitle.text = "";

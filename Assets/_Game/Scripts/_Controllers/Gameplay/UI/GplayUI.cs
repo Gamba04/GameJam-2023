@@ -13,6 +13,8 @@ public class GplayUI : UIManager
     private HUDController hudController;
     [SerializeField]
     private PauseController pauseController;
+    [SerializeField]
+    private GameObject interactPrompt;
 
     #region Singleton Override
 
@@ -44,7 +46,7 @@ public class GplayUI : UIManager
     /// <summary> Set UI overlay for interactions available. </summary>
     public static void OnSetInteractionOverlay(bool value)
     {
-
+        Instance.interactPrompt.SetActive(value);
     }
 
     #endregion
