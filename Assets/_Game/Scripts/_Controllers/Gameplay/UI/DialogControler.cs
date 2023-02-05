@@ -14,6 +14,13 @@ public class MessageInfo
     private string message;
     private Color colour;
 
+    public MessageInfo(string speaker, string message, Color colour)
+    {
+        this.speaker = speaker;
+        this.message = message;
+        this.colour = colour;
+    }
+    
     public String GetSpeaker() { return speaker; }
     public String GetMessage() { return message; }
     public Color GetColor() { return colour; }
@@ -27,12 +34,27 @@ public class DialogControler : MonoBehaviour
     private string concat = "";
     private int idx = 0;
     private List<MessageInfo> dialogues;
+    private bool drawing = false;
 
     public event Action onFinishedDialogue;
 
     public void Start()
     {
         dialogues= new List<MessageInfo>();
+        MessageInfo info = new MessageInfo("Steve:", "Su mama es hombre", Color.red);
+        dialogues.Add(info);
+        MessageInfo info2 = new MessageInfo("Pedro:", "Jonjo j ojo j o jjojo jjoo oooonnnn", Color.white);
+        dialogues.Add(info2);
+        SetDialogue(dialogues);
+    }
+
+    public void Update()
+    {
+        if (Input.GetButtonDown("Skip"))
+        {
+            StartDialogue();
+            print("input");
+        }
     }
 
     public void SetDialogue(List<MessageInfo> str) 
@@ -43,16 +65,25 @@ public class DialogControler : MonoBehaviour
     }
      private void StartDialogue()
     {
-        
-        if(idx < dialogues.Count)
+        if (!drawing)
         {
-            StartCoroutine(DrawDialogue(dialogues[idx]));
-            onFinishedDialogue?.Invoke();
-            idx++;
+            if (idx < dialogues.Count)
+            {
+                StartCoroutine(DrawDialogue(dialogues[idx]));
+                idx++;
+            }
+            else
+            {
+                print("finished");
+                onFinishedDialogue?.Invoke();
+                speaker.text = "";
+                subtitle.text = "";
+            }
         }
     }
     private IEnumerator DrawDialogue(MessageInfo msgInfo)
-    {
+    {   
+        drawing = true;
         speaker.text = msgInfo.GetSpeaker();
         speaker.color = msgInfo.GetColor(); 
 
@@ -63,5 +94,6 @@ public class DialogControler : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         concat = "";
+        drawing = false;
     }
 }
