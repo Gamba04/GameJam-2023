@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GayserButton : MonoBehaviour , IInteractable
+public class GaiserButton : MonoBehaviour, IInteractable
 {
     [SerializeField] 
-    private Gaysers gayser;
+    private Gaiser gaiser;
+
     public void Interact()
     {
-        gayser.SetState(!gayser.GetState());
+        gaiser.SetState(!gaiser.GetState());
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gaysers : MonoBehaviour
+public class Gaiser : MonoBehaviour
 {
     private bool state = true;
 

@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 4028155630189156298}
   - component: {fileID: 8486704479301093763}
   m_Layer: 0
-  m_Name: GayserButton
+  m_Name: GaiserButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,8 +181,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7468126542786789032}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0803344, y: 1.3432177, z: -0.587254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1666334997302382237}
@@ -201,4 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad1e17e3a239a34e951a0bcb057d544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gayser: {fileID: 0}
+  gaiser: {fileID: 0}
