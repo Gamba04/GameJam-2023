@@ -1551,6 +1551,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4225359159197176644, guid: 6fa815df1e071c2409f5768ad2c2717a,
         type: 3}
+      propertyPath: startingPlayer
+      value: 
+      objectReference: {fileID: 8540810040050367749}
+    - target: {fileID: 4225359159197176644, guid: 6fa815df1e071c2409f5768ad2c2717a,
+        type: 3}
       propertyPath: players.Array.size
       value: 1
       objectReference: {fileID: 0}
