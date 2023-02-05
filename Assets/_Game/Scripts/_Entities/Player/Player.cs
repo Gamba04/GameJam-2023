@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
-    private enum State
+    protected enum State
     {
         NoInput,
         Normal,
@@ -84,6 +84,8 @@ public abstract class Player : MonoBehaviour
     private void OtherStart()
     {
         targetDir = transform.forward;
+
+        ChangeState(State.Normal); // Temp
     }
 
     #endregion
@@ -129,7 +131,7 @@ public abstract class Player : MonoBehaviour
 
     #region States
 
-    private void ChangeState(State state)
+    protected void ChangeState(State state)
     {
         if (this.state == state) return;
 
@@ -152,7 +154,7 @@ public abstract class Player : MonoBehaviour
                 break;
 
             case State.Special:
-                anim.SetTrigger("Special");
+                anim.SetBool("Special", true);
                 break;
 
             case State.Rooted:
@@ -174,7 +176,7 @@ public abstract class Player : MonoBehaviour
                 break;
 
             case State.Special:
-
+                anim.SetBool("Special", false);
                 break;
 
             case State.Rooted:
@@ -191,6 +193,8 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnMovement(Vector2 input)
     {
+        if (state != State.Normal) input = Vector2.zero;
+
         input.Normalize();
 
         SetDirection(input);
@@ -225,14 +229,23 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnJump()
     {
+        if (state != State.Normal) return;
+
         if (!grounded) return;
 
         Jump(jumpSpeed);
     }
 
+    protected virtual void OnInteract()
+    {
+        if (state != State.Normal) return;
+
+        interactable?.Interact(this);
+    }
+
     private void OnSpecial()
     {
-        if (state != State.Special && !grounded) return;
+        if (state == State.Special || !grounded) return;
 
         Special();
     }
@@ -240,11 +253,6 @@ public abstract class Player : MonoBehaviour
     protected virtual void Special()
     {
         ChangeState(State.Special);
-    }
-
-    protected virtual void OnInteract()
-    {
-        interactable?.Interact(this);
     }
 
     #endregion
@@ -313,7 +321,7 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    private void SetGrounded(bool value)
+    protected virtual void SetGrounded(bool value)
     {
         grounded = value;
 
