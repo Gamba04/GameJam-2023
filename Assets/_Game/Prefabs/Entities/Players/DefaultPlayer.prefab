@@ -152,12 +152,19 @@ MonoBehaviour:
   airDeceleration: 10
   speed: 4
   jumpSpeed: 10
-  terminalVelocity: 7
+  terminalVelocity: 15
   directionSpeed: 10
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  interactionRadius: 4
   worldLayer: 11
   groundCollisionHeight: 0.1
+  state: 0
   grounded: 0
   targetDir: {x: 0, y: 0, z: 0}
+  superJumpDelay: 1
+  superJumpSpeed: 15
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0

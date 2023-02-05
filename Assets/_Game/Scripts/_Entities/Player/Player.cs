@@ -5,6 +5,14 @@ using UnityEngine;
 
 public abstract class Player : MonoBehaviour
 {
+    protected enum State
+    {
+        NoInput,
+        Normal,
+        Special,
+        Rooted
+    }
+
     [SerializeField]
     private bool active = true;
 
@@ -36,15 +44,29 @@ public abstract class Player : MonoBehaviour
 
     [Space]
     [SerializeField]
+    private LayerMask interactableMask;
+    [SerializeField]
+    private float interactionRadius;
+    [SerializeField]
     private int worldLayer;
     [SerializeField]
     private float groundCollisionHeight;
 
     [Header("Info")]
     [ReadOnly, SerializeField]
+    protected State state;
+    [ReadOnly, SerializeField]
     private bool grounded;
     [ReadOnly, SerializeField]
     private Vector3 targetDir;
+
+    private bool groundedLeeway;
+
+    private IInteractable interactable;
+
+    protected virtual float TerminalVelocity => terminalVelocity;
+
+    protected virtual bool InputsEnabled => state == State.Normal;
 
     public bool Active { get => active; set => active = value; }
 
@@ -62,11 +84,14 @@ public abstract class Player : MonoBehaviour
         input.onMovement += OnMovement;
         input.onJump += OnJump;
         input.onSpecial += OnSpecial;
+        input.onInteract += OnInteract;
     }
 
     private void OtherStart()
     {
         targetDir = transform.forward;
+
+        ChangeState(State.Normal); // Temp
     }
 
     #endregion
@@ -78,6 +103,7 @@ public abstract class Player : MonoBehaviour
     private void Update()
     {
         DirectionUpdate();
+        InteractableUpdate();
     }
 
     private void DirectionUpdate()
@@ -85,6 +111,84 @@ public abstract class Player : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Min(directionSpeed * Time.deltaTime, 1));
+    }
+
+    private void InteractableUpdate()
+    {
+        List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactableMask));
+
+        foreach (Collider collider in colliders)
+        {
+            IInteractable target = collider.GetComponentInParent<IInteractable>();
+
+            if (target != null)
+            {
+                interactable = target;
+                break;
+            }
+        }
+
+        GplayUI.OnSetInteractionOverlay(interactable != null);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region States
+
+    protected void ChangeState(State state)
+    {
+        if (this.state == state) return;
+
+        OnStateExit(this.state);
+        OnStateEnter(state);
+
+        this.state = state;
+    }
+
+    private void OnStateEnter(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Special:
+                anim.SetBool("Special", true);
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", true);
+                break;
+        }
+    }
+
+    private void OnStateExit(State state)
+    {
+        switch (state)
+        {
+            case State.NoInput:
+
+                break;
+
+            case State.Normal:
+
+                break;
+
+            case State.Special:
+                anim.SetBool("Special", false);
+                break;
+
+            case State.Rooted:
+                anim.SetBool("Burried", false);
+                break;
+        }
     }
 
     #endregion
@@ -95,6 +199,8 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnMovement(Vector2 input)
     {
+        if (!InputsEnabled) input = Vector2.zero;
+
         input.Normalize();
 
         SetDirection(input);
@@ -122,27 +228,37 @@ public abstract class Player : MonoBehaviour
         }
 
         float yVelocity = rb.velocity.y;
-        yVelocity = Mathf.Max(yVelocity, -terminalVelocity);
+        yVelocity = Mathf.Max(yVelocity, -TerminalVelocity);
 
         rb.velocity = new Vector3(velocity.x, yVelocity, velocity.y);
     }
 
     protected virtual void OnJump()
     {
+        if (!InputsEnabled) return;
+
         if (!grounded) return;
 
-        Vector3 velocity = rb.velocity;
-
-        velocity.y = jumpSpeed;
-
-        rb.velocity = velocity;
-
-        SetGrounded(false);
+        Jump(jumpSpeed);
     }
 
-    protected virtual void OnSpecial()
+    protected virtual void OnInteract()
     {
-        anim.SetTrigger("Special");
+        if (!InputsEnabled) return;
+
+        interactable?.Interact(this);
+    }
+
+    private void OnSpecial()
+    {
+        if (!InputsEnabled || !grounded) return;
+
+        Special();
+    }
+
+    protected virtual void Special()
+    {
+        ChangeState(State.Special);
     }
 
     #endregion
@@ -170,7 +286,34 @@ public abstract class Player : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
+    #region Public Methods
+
+    public void Root()
+    {
+        ChangeState(State.Rooted);
+    }
+
+    public void Unroot()
+    {
+        ChangeState(State.Normal);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
     #region Other
+
+    protected void Jump(float speed)
+    {
+        Vector3 velocity = rb.velocity;
+
+        velocity.y = speed;
+
+        rb.velocity = velocity;
+
+        SetGrounded(false);
+    }
 
     private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
     {
@@ -186,9 +329,22 @@ public abstract class Player : MonoBehaviour
 
     private void SetGrounded(bool value)
     {
+        if (groundedLeeway && value) return;
+
         grounded = value;
 
         anim.SetBool("Grounded", value);
+
+        OnSetGrounded(value);
+    }
+
+    protected virtual void OnSetGrounded(bool value) { }
+
+    protected void SetGroundedLeeway(float duration)
+    {
+        groundedLeeway = true;
+
+        Timer.CallOnDelay(() => groundedLeeway = false, duration, "Grounded Leeway");
     }
 
     private void SetDirection(Vector2 direction)

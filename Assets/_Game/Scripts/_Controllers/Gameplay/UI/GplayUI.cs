@@ -13,6 +13,8 @@ public class GplayUI : UIManager
     private HUDController hudController;
     [SerializeField]
     private PauseController pauseController;
+    [SerializeField]
+    private GameObject interactPrompt;
 
     #region Singleton Override
 
@@ -27,6 +29,8 @@ public class GplayUI : UIManager
         base.OnStart();
 
         Instance.pauseController.SetVisible(false, true);
+
+        OnSetInteractionOverlay(false);
     }
 
     #endregion
@@ -41,7 +45,15 @@ public class GplayUI : UIManager
         Instance.pauseController.SetVisible(value);
     }
 
+    /// <summary> Set UI overlay for interactions available. </summary>
+    public static void OnSetInteractionOverlay(bool value)
+    {
+        Instance.interactPrompt.SetActive(value);
+    }
+
     #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Public Methods
 
@@ -49,7 +61,7 @@ public class GplayUI : UIManager
     {
         SetInteractions(false);
 
-        SetFade(true, false, () => GambaFunctions.LoadScene(menuIndex));
+        SetFade(true, FadeColor.Default, false, () => GambaFunctions.LoadScene(menuIndex));
     }
 
     #endregion
