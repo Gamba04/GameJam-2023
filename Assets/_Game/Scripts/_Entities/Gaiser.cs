@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Gaiser : MonoBehaviour
 {
+    [SerializeField]
+    private Vector3 direction;
+
     private bool state = true;
 
     public void SetState(bool state)
@@ -14,20 +17,24 @@ public class Gaiser : MonoBehaviour
     { 
         return state; 
     }
-    private void GayserImpulse(Collider other)
+
+    private void GaiserImpulse(Collider other)
     {
         IGaiserInteractable interactable = other.GetComponentInParent<IGaiserInteractable>();
+
         if (interactable != null && state)
         {
-            interactable.Impulse();
+            interactable.Impulse(direction.normalized);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {   
-        GayserImpulse(other);
+        GaiserImpulse(other);
     }
+
     private void OnTriggerStay(Collider other)
     {
-        GayserImpulse(other);
+        GaiserImpulse(other);
     }
 }

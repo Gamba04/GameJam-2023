@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,12 +8,16 @@ public class Door : MonoBehaviour
     [SerializeField]
     private LevelTag targetLevel;
 
-    [Space]
-    [SerializeField]
-    private UnityEvent doorEvent;
+    public event Action<LevelTag> onLoadLevel;
+
+    private bool activated;
 
     private void OnTriggerEnter(Collider other)
     {
-        doorEvent?.Invoke();
+        if (activated) return;
+
+        activated = true;
+
+        onLoadLevel?.Invoke(targetLevel);
     }
 }

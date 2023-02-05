@@ -35,11 +35,11 @@ public class AerialPlayer : Player, IGaiserInteractable
 
     #region IGaiserInteractable
 
-    public void Impulse()
+    public void Impulse(Vector3 direction)
     {
         if (state == State.Special)
         {
-            Jump(gaiserImpulse * Time.deltaTime);
+            rb.velocity += direction * gaiserImpulse * Time.deltaTime;
         }
     }
 

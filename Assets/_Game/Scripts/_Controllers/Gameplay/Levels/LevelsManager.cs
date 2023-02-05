@@ -29,17 +29,11 @@ public class LevelsManager : MonoBehaviour
 
     // ----------------------------------------------------------------------------------------------------------------------------
 
-    #region Public Methods
-
-    public void LoadLevel(LevelTag tag) => LoadLevel(setup.GetLevel(tag));
-
-    public void LoadCurrentLevel() => LoadLevel(setup.GetCurrentLevel());
-
-    #endregion
-
-    // ----------------------------------------------------------------------------------------------------------------------------
-
     #region Other
+
+    private void LoadLevel(LevelTag tag) => LoadLevel(setup.GetLevel(tag));
+
+    private void LoadCurrentLevel() => LoadLevel(setup.GetCurrentLevel());
 
     private void LoadLevel(LevelsSetup.LevelModel level)
     {
@@ -51,6 +45,7 @@ public class LevelsManager : MonoBehaviour
         currentLevel.name = level.tag.ToString();
 
         currentLevel.onSetActivePlayer += onSetActivePlayer;
+        currentLevel.onLoadLevel += LoadLevel;
 
         currentLevel.Init();
     }

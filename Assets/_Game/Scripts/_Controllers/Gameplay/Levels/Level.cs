@@ -9,9 +9,11 @@ public class Level : MonoBehaviour
     [SerializeField]
     private Player startingPlayer;
     [SerializeField]
+    private Transform playersParent;
+    [SerializeField]
     private List<Root> roots;
     [SerializeField]
-    private Transform playersParent;
+    private List<Door> doors;
 
     [Header("Settings")]
     [SerializeField]
@@ -22,6 +24,7 @@ public class Level : MonoBehaviour
     private Player activePlayer;
 
     public event Action<Player> onSetActivePlayer;
+    public event Action<LevelTag> onLoadLevel;
 
     #region Init
 
@@ -29,6 +32,7 @@ public class Level : MonoBehaviour
     {
         SetActivePlayer(startingPlayer);
         RootsSetup();
+        DoorsSetup();
     }
 
     private void RootsSetup()
@@ -38,6 +42,14 @@ public class Level : MonoBehaviour
             root.Init(playersParent);
 
             root.onSetActivePlayer += SetActivePlayer;
+        }
+    }
+
+    private void DoorsSetup()
+    {
+        foreach (Door door in doors)
+        {
+            door.onLoadLevel += OnLoadLevel;
         }
     }
 
@@ -55,6 +67,13 @@ public class Level : MonoBehaviour
         Timer.CallOnDelay(() => player.Unroot(), rootDelay, "Root transition");
 
         onSetActivePlayer?.Invoke(player);
+    }
+
+    private void OnLoadLevel(LevelTag levelTag)
+    {
+        activePlayer.Root();
+
+        onLoadLevel?.Invoke(levelTag);
     }
 
     #endregion
