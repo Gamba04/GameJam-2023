@@ -59,7 +59,7 @@ public class Root : MonoBehaviour, IInteractable
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position + playerOffset, 0.5f);
+        Gizmos.DrawWireSphere(transform.position + playerOffset, 0.1f);
     }
 
 #endif

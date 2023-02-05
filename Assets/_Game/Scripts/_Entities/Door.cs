@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
 {
     [SerializeField]
     private LevelTag targetLevel;
+
+    [Space]
     [SerializeField]
     private UnityEvent doorEvent;
 

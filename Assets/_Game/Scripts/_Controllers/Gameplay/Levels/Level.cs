@@ -49,12 +49,12 @@ public class Level : MonoBehaviour
 
     private void SetActivePlayer(Player player)
     {
-        activePlayer.Root();
+        if (activePlayer != null) activePlayer.Root();
+        activePlayer = player;
+
         Timer.CallOnDelay(() => player.Unroot(), rootDelay, "Root transition");
 
         onSetActivePlayer?.Invoke(player);
-
-        activePlayer = player;
     }
 
     #endregion
