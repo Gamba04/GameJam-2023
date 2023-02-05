@@ -54,13 +54,15 @@ public abstract class Player : MonoBehaviour
 
     [Header("Info")]
     [ReadOnly, SerializeField]
-    private State state;
+    protected State state;
     [ReadOnly, SerializeField]
     private bool grounded;
     [ReadOnly, SerializeField]
     private Vector3 targetDir;
 
     private IInteractable interactable;
+
+    protected virtual float TerminalVelocity => terminalVelocity;
 
     public bool Active { get => active; set => active = value; }
 
@@ -222,7 +224,7 @@ public abstract class Player : MonoBehaviour
         }
 
         float yVelocity = rb.velocity.y;
-        yVelocity = Mathf.Max(yVelocity, -terminalVelocity);
+        yVelocity = Mathf.Max(yVelocity, -TerminalVelocity);
 
         rb.velocity = new Vector3(velocity.x, yVelocity, velocity.y);
     }
