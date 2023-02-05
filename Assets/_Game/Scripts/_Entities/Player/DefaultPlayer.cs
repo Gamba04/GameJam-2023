@@ -8,8 +8,37 @@ public class DefaultPlayer : Player
     [SerializeField]
     private float superJumpSpeed;
 
+    private Timer.CancelRequest onSuperJumpCancel = new Timer.CancelRequest();
+
+    #region Mechanics
+
     protected override void Special()
     {
-        Timer.CallOnDelay(() => Jump(superJumpSpeed), superJumpDelay, "Super Jump");
+        base.Special();
+
+        Timer.CallOnDelay(SuperJump, superJumpDelay, onSuperJumpCancel, "Super Jump");
     }
+
+    private void SuperJump()
+    {
+        Jump(superJumpSpeed);
+
+        ChangeState(State.Normal);
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Other
+
+    private void CancelSuperJump()
+    {
+        onSuperJumpCancel.Cancel();
+
+        ChangeState(State.Normal);
+    }
+
+    #endregion
+
 }
