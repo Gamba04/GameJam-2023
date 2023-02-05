@@ -60,6 +60,8 @@ public abstract class Player : MonoBehaviour
     [ReadOnly, SerializeField]
     private Vector3 targetDir;
 
+    private bool groundedLeeway;
+
     private IInteractable interactable;
 
     protected virtual float TerminalVelocity => terminalVelocity;
@@ -325,9 +327,18 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void SetGrounded(bool value)
     {
+        if (groundedLeeway) return;
+
         grounded = value;
 
         anim.SetBool("Grounded", value);
+    }
+
+    protected void SetGroundedLeeway(float duration)
+    {
+        groundedLeeway = true;
+
+        Timer.CallOnDelay(() => groundedLeeway = false, duration, "Grounded Leeway");
     }
 
     private void SetDirection(Vector2 direction)
