@@ -1168,6 +1168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitle: {fileID: 1374666327}
+  speaker: {fileID: 0}
 --- !u!1 &1612305096
 GameObject:
   m_ObjectHideFlags: 0

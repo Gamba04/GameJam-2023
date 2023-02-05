@@ -50,9 +50,7 @@ public abstract class Player : MonoBehaviour
     [ReadOnly, SerializeField]
     private Vector3 targetDir;
 
-    private List<IInteractable> interactables;
-
-    private bool InteractionsAvailable => interactables.Count > 0;
+    private IInteractable interactable;
 
     public bool Active { get => active; set => active = value; }
 
@@ -107,11 +105,12 @@ public abstract class Player : MonoBehaviour
 
             if (target != null)
             {
-                interactables.Add(target);
+                interactable = target;
+                break;
             }
         }
 
-        GplayUI.OnSetInteractionOverlay(interactables.Count > 0);
+        GplayUI.OnSetInteractionOverlay(interactable != null);
     }
 
     #endregion
@@ -174,7 +173,7 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnInteract()
     {
-        interactables.ForEach(interactable => interactable.Interact());
+        interactable?.Interact(this);
     }
 
     #endregion
@@ -196,6 +195,17 @@ public abstract class Player : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         CheckGroundCollision(collision, belowHeight => SetGrounded(false));
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Public Methods
+
+    public void Bury()
+    {
+
     }
 
     #endregion

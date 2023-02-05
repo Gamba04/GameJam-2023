@@ -11,9 +11,9 @@ public class Root : MonoBehaviour, IInteractable
 
     #region IInteractable
 
-    public void Interact()
+    public void Interact(Player player)
     {
-
+        
     }
 
     #endregion
