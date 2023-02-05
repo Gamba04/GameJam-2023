@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c3fa3974e79a49a8601eff6f373e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
   rb: {fileID: 4409055434628808975}
   input: {fileID: 4409055434628808974}
   anim: {fileID: 226887785598550628}
@@ -157,7 +156,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 4096
-  interactionRadius: 4
+  interactionRadius: 1
   worldLayer: 11
   groundCollisionHeight: 0.1
   state: 0

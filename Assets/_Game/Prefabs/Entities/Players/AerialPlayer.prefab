@@ -156,7 +156,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 4096
-  interactionRadius: 4
+  interactionRadius: 1
   worldLayer: 11
   groundCollisionHeight: 0.1
   state: 0
