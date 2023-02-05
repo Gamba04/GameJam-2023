@@ -1,24 +1,14 @@
 fileFormatVersion: 2
-guid: a1a0ef500ff0f374390432119032246d
+guid: 5bab28cf692f3dd42ab93ff37c6393ea
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
+  internalIDToNameTable: []
+  externalObjects:
   - first:
-      74: 2975848545512795582
-    second: DEF_Mongeeh_Airborne
-  - first:
-      74: 7451181554633405878
-    second: DEF_Mongeeh_Fall
-  - first:
-      74: 4494260732441680009
-    second: DEF_Mongeeh_Idle
-  - first:
-      74: 5340277456920630856
-    second: DEF_Mongeeh_Run
-  - first:
-      74: -2876148693256534298
-    second: DEF_Mongeeh_StartJump
-  externalObjects: {}
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mt_Geiser
+    second: {fileID: 2100000, guid: f7e7a2a1683fcc447a74ca13c6f1d0bb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
