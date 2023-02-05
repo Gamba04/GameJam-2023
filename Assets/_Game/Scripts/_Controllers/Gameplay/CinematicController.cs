@@ -5,6 +5,7 @@ using UnityEngine.Video;
 
 public class CinematicController : MonoBehaviour
 {
+    [SerializeField]
     private VideoPlayer MyVideoPlayer;
     
     public void PlayVideo(VideoClip cinematic)
