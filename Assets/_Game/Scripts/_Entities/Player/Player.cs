@@ -114,6 +114,8 @@ public abstract class Player : MonoBehaviour
 
     private void InteractableUpdate()
     {
+        interactable = null;
+
         List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactableMask));
 
         foreach (Collider collider in colliders)
