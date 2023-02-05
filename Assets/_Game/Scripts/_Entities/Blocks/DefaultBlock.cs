@@ -6,6 +6,11 @@ using UnityEngine;
 [ExecuteAlways]
 public class DefaultBlock : MonoBehaviour
 {
+    [Header("Components")]
+    [SerializeField]
+    private new Collider collider;
+
+    [Header("Settings")]
     [SerializeField]
     private bool draggable;
 
@@ -25,6 +30,27 @@ public class DefaultBlock : MonoBehaviour
             EditorUpdate();
 #endif
         }
+    }
+
+    #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
+
+    #region Public Methods
+
+    public void Grab()
+    {
+        collider.enabled = false;
+    }
+
+    public void Drag(Vector3 position)
+    {
+        transform.position = position;
+    }
+
+    public void Drop()
+    {
+        collider.enabled = true;
     }
 
     #endregion

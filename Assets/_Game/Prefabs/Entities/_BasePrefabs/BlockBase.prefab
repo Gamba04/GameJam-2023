@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27070f6de05442d4398373b37c253909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 6609803103573786617}
+  draggable: 0
 --- !u!1 &1014981562187274672
 GameObject:
   m_ObjectHideFlags: 0
