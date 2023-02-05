@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Gaysers : MonoBehaviour
 {
-    [SerializeField]
+    private bool state = true;
 
+    public void SetState(bool state)
+    {
+        this.state = state; 
+    }
+    public bool GetState() 
+    { 
+        return state; 
+    }
     private void GayserImpulse(Collider other)
     {
         IGaiserInteractable interactable = other.GetComponentInParent<IGaiserInteractable>();
-        if (interactable != null)
+        if (interactable != null && state)
         {
             interactable.Impulse();
         }
