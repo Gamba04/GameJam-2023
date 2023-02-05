@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4409055434614689729}
-  - component: {fileID: 226887785598550628}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -79,25 +78,6 @@ Transform:
   m_Father: {fileID: 4409055434628808973}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &226887785598550628
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409055434614689742}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: d434dc23307ade14c9092c869e016735, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4409055434628808970
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4409055434628808975}
   input: {fileID: 4409055434628808974}
-  anim: {fileID: 226887785598550628}
+  anim: {fileID: 0}
   acceleration: 30
   groundDeceleration: 30
   airDeceleration: 10
@@ -298,3 +278,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3911353570989662836}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1405348665748944910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2722186775572486778, guid: 4e5938845434c6a4cb6774eaa48a2cea,
+    type: 3}
+  m_PrefabInstance: {fileID: 3911353570989662836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8777018079931607555
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405348665748944910}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d434dc23307ade14c9092c869e016735, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
