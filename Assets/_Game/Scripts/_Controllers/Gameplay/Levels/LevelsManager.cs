@@ -38,7 +38,7 @@ public class LevelsManager : MonoBehaviour
     private void LoadLevel(LevelsSetup.LevelModel level)
     {
         // Destroy previous level
-        if (currentLevel != null) Destroy(currentLevel);
+        if (currentLevel != null) Destroy(currentLevel.gameObject);
 
         // Instantiate level
         currentLevel = Instantiate(level.level, levelParent);
