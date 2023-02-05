@@ -274,6 +274,7 @@ MonoBehaviour:
   hudController: {fileID: 2054727565}
   pauseController: {fileID: 2027136936}
   interactPrompt: {fileID: 432972224}
+  dialogueController: {fileID: 0}
 --- !u!1 &20856589
 GameObject:
   m_ObjectHideFlags: 0
