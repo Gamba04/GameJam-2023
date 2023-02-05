@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
   messages:
-  - name: 'Chimbo: nigga...'
-    speaker: Chimbo
+  - name: 'SageTree: eargt...'
+    speaker: 0
+    message: eargthyjukijlosdjaklsd
+  - name: 'SageTree: nigga...'
+    speaker: 0
     message: nigga is blsadjkklsajdklasdjaklsd
-    color: {r: 0, g: 0, b: 0, a: 0}
+  - name: 'SageTree: nigga...'
+    speaker: 0
+    message: nigga is blsadjkklsajdklasdjaklsd
