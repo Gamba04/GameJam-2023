@@ -13,19 +13,12 @@ public class MessageInfo
     private string speaker;
     private string message;
     private Color colour;
-
-    public MessageInfo(string speaker, string message, Color colour)
-    {
-        this.speaker = speaker;
-        this.message = message;
-        this.colour = colour;
-    }
     
     public String GetSpeaker() { return speaker; }
     public String GetMessage() { return message; }
     public Color GetColor() { return colour; }
 }
-public class DialogControler : MonoBehaviour
+public class DialogueControler : MonoBehaviour
 {
     [SerializeField]
     private Text subtitle;
@@ -37,16 +30,6 @@ public class DialogControler : MonoBehaviour
     private bool drawing = false;
 
     public event Action onFinishedDialogue;
-
-    public void Start()
-    {
-        dialogues= new List<MessageInfo>();
-        MessageInfo info = new MessageInfo("Steve:", "Su mama es hombre", Color.red);
-        dialogues.Add(info);
-        MessageInfo info2 = new MessageInfo("Pedro:", "Jonjo j ojo j o jjojo jjoo oooonnnn", Color.white);
-        dialogues.Add(info2);
-        SetDialogue(dialogues);
-    }
 
     public void Update()
     {
