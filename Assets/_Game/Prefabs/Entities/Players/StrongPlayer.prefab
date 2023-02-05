@@ -186,6 +186,10 @@ MonoBehaviour:
   state: 0
   grounded: 0
   targetDir: {x: 0, y: 0, z: 0}
+  detectionRadius: 0.5
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0

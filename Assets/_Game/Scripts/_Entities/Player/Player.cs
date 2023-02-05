@@ -64,6 +64,8 @@ public abstract class Player : MonoBehaviour
 
     protected virtual bool InputsEnabled => state == State.Normal;
 
+    protected virtual bool SpecialEnabled => true;
+
     #region Start
 
     private void Start()
@@ -94,9 +96,12 @@ public abstract class Player : MonoBehaviour
 
     private void Update()
     {
+        OnUpdate();
         DirectionUpdate();
         InteractableUpdate();
     }
+
+    protected virtual void OnUpdate() { }
 
     private void DirectionUpdate()
     {
@@ -109,9 +114,9 @@ public abstract class Player : MonoBehaviour
 
     private void InteractableUpdate()
     {
-        if (state == State.NoInput) return;
-
         interactable = null;
+
+        if (state == State.NoInput) return;
 
         List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactableMask));
 
@@ -313,12 +318,19 @@ public abstract class Player : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == worldLayer) // World
         {
-            List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
-
-            bool belowHeight = contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight);
-
-            onCollision?.Invoke(belowHeight);
+            onCollision?.Invoke(CheckBelowHeight(collision));
         }
+    }
+
+    private bool CheckBelowHeight(Collision collision)
+    {
+        if (Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.2f, worldLayer)) return true;
+
+        List<ContactPoint> contacts = new List<ContactPoint>(collision.contacts);
+
+        if (contacts.Exists(contact => contact.point.y < transform.position.y + groundCollisionHeight)) return true;
+
+        return false;
     }
 
     private void SetGrounded(bool value)

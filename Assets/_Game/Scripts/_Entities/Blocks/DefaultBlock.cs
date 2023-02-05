@@ -6,6 +6,10 @@ using UnityEngine;
 [ExecuteAlways]
 public class DefaultBlock : MonoBehaviour
 {
+    [SerializeField]
+    private bool draggable;
+
+    public bool Draggable => draggable;
 
     #region Update
 
