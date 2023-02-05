@@ -9,6 +9,7 @@ public abstract class Player : MonoBehaviour
     {
         NoInput,
         Normal,
+        Special,
         Rooted
     }
 
@@ -150,6 +151,10 @@ public abstract class Player : MonoBehaviour
 
                 break;
 
+            case State.Special:
+                anim.SetTrigger("Special");
+                break;
+
             case State.Rooted:
                 anim.SetBool("Burried", true);
                 break;
@@ -165,6 +170,10 @@ public abstract class Player : MonoBehaviour
                 break;
 
             case State.Normal:
+
+                break;
+
+            case State.Special:
 
                 break;
 
@@ -218,18 +227,19 @@ public abstract class Player : MonoBehaviour
     {
         if (!grounded) return;
 
-        Vector3 velocity = rb.velocity;
-
-        velocity.y = jumpSpeed;
-
-        rb.velocity = velocity;
-
-        SetGrounded(false);
+        Jump(jumpSpeed);
     }
 
-    protected virtual void OnSpecial()
+    private void OnSpecial()
     {
-        anim.SetTrigger("Special");
+        if (state != State.Special && !grounded) return;
+
+        Special();
+    }
+
+    protected virtual void Special()
+    {
+        ChangeState(State.Special);
     }
 
     protected virtual void OnInteract()
@@ -279,6 +289,17 @@ public abstract class Player : MonoBehaviour
     // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Other
+
+    protected void Jump(float speed)
+    {
+        Vector3 velocity = rb.velocity;
+
+        velocity.y = speed;
+
+        rb.velocity = velocity;
+
+        SetGrounded(false);
+    }
 
     private void CheckGroundCollision(Collision collision, Action<bool> onCollision)
     {

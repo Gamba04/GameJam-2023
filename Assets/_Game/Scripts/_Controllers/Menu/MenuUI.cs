@@ -19,7 +19,7 @@ public class MenuUI : UIManager
     {
         SetInteractions(false);
 
-        SetFade(true, false, () => GambaFunctions.LoadScene(gameplaySceneIndex));
+        SetFade(true, FadeColor.Default, false, () => GambaFunctions.LoadScene(gameplaySceneIndex));
     }
 
     #endregion

@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c42d14a15545a8a4c8973c542cb851e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeColorsSetup: {fileID: 11400000, guid: ed4144cff4fe88d4f8ad0a14155dcde2, type: 2}
   canvas: {fileID: 20363269}
   fade: {fileID: 1311800587}
   startWithFade: 1
@@ -270,7 +271,6 @@ MonoBehaviour:
     duration: 1
     value: {r: 0, g: 0, b: 0, a: 0}
     isOnTransition: 0
-  fadeColor: {r: 1, g: 1, b: 1, a: 1}
   hudController: {fileID: 2054727565}
   pauseController: {fileID: 2027136936}
 --- !u!1 &20856589

@@ -57,7 +57,7 @@ public class GplayUI : UIManager
     {
         SetInteractions(false);
 
-        SetFade(true, false, () => GambaFunctions.LoadScene(menuIndex));
+        SetFade(true, FadeColor.Default, false, () => GambaFunctions.LoadScene(menuIndex));
     }
 
     #endregion
