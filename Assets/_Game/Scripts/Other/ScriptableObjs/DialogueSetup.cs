@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [Serializable]
 public class MessageInfo
 {
@@ -10,6 +11,7 @@ public class MessageInfo
     public string speaker;
     public string message;
     public Color color;
+    public List<SFXTag> voices;
 
     public void SetName()
     {

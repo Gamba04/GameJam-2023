@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b3aeea75090b22840ae3be5b3c8573ec
+guid: 3d0de9a629113354ba65b54452eb6774
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -18,6 +18,9 @@ ModelImporter:
   - first:
       74: -2876148693256534298
     second: DEF_Mongeeh_StartJump
+  - first:
+      74: 2836010044327975789
+    second: DEF_Mongeeh_Power
   externalObjects: {}
   materials:
     materialImportMode: 2

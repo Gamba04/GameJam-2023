@@ -41,7 +41,7 @@ public class DialogueController : MonoBehaviour
         {
             if (idx < dialogues.Count)
             {
-                StartCoroutine(DrawDialogue(dialogues[idx]));
+                StartCoroutine(DrawDialogue(dialogues[idx])); ;
                 idx++;
             }
             else
@@ -54,7 +54,9 @@ public class DialogueController : MonoBehaviour
     }
 
     private IEnumerator DrawDialogue(MessageInfo msgInfo)
-    {   
+    {
+        SFXPlayer.PlayRandomSFX(msgInfo.voices);
+
         drawing = true;
         speaker.text = msgInfo.speaker;
         speaker.color = msgInfo.color; 
