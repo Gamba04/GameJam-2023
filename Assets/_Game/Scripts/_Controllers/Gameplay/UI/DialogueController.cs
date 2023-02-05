@@ -7,18 +7,7 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UI;
 
-[Serializable]
-public class MessageInfo
-{
-    private string speaker;
-    private string message;
-    private Color colour;
-    
-    public String GetSpeaker() { return speaker; }
-    public String GetMessage() { return message; }
-    public Color GetColor() { return colour; }
-}
-public class DialogueControler : MonoBehaviour
+public class DialogueController : MonoBehaviour
 {
     [SerializeField]
     private Text subtitle;
@@ -45,6 +34,7 @@ public class DialogueControler : MonoBehaviour
         StartDialogue();
         
     }
+
      private void StartDialogue()
     {
         if (!drawing)
@@ -62,18 +52,21 @@ public class DialogueControler : MonoBehaviour
             }
         }
     }
+
     private IEnumerator DrawDialogue(MessageInfo msgInfo)
     {   
         drawing = true;
-        speaker.text = msgInfo.GetSpeaker();
-        speaker.color = msgInfo.GetColor(); 
+        speaker.text = msgInfo.speaker;
+        speaker.color = msgInfo.color; 
 
-        foreach (char c in msgInfo.GetMessage())
+        foreach (char c in msgInfo.message)
         {
             concat += c;
             subtitle.text = concat;
+
             yield return new WaitForSeconds(0.1f);
         }
+
         concat = "";
         drawing = false;
     }

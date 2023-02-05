@@ -167,6 +167,7 @@ MonoBehaviour:
   specialTerminalVelocity: 3
   specialLeeway: 0.1
   gaiserImpulse: 15
+  message: []
 --- !u!114 &4409055434628808974
 MonoBehaviour:
   m_ObjectHideFlags: 0
