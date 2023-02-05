@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1014981561491104796, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
       propertyPath: m_Name
-      value: Purple Cap
+      value: Geiser
       objectReference: {fileID: 0}
     - target: {fileID: 1014981561491104799, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
@@ -71,7 +71,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 114b1a460a7e53e4b901c050f7bfe926, type: 2}
+      objectReference: {fileID: 2100000, guid: 4830e201d56b5ab488e0a668b42b6583, type: 2}
     - target: {fileID: 6248107085785322617, guid: 312a0d6f816e469479445e44d3cb7d2a,
         type: 3}
       propertyPath: m_LocalScale.x
