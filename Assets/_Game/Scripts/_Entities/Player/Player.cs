@@ -66,6 +66,8 @@ public abstract class Player : MonoBehaviour
 
     protected virtual float TerminalVelocity => terminalVelocity;
 
+    protected virtual bool InputsEnabled => state == State.Normal;
+
     public bool Active { get => active; set => active = value; }
 
     #region Start
@@ -197,7 +199,7 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnMovement(Vector2 input)
     {
-        if (state != State.Normal) input = Vector2.zero;
+        if (!InputsEnabled) input = Vector2.zero;
 
         input.Normalize();
 
@@ -233,7 +235,7 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnJump()
     {
-        if (state != State.Normal) return;
+        if (!InputsEnabled) return;
 
         if (!grounded) return;
 
@@ -242,14 +244,14 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void OnInteract()
     {
-        if (state != State.Normal) return;
+        if (!InputsEnabled) return;
 
         interactable?.Interact(this);
     }
 
     private void OnSpecial()
     {
-        if (state == State.Special || !grounded) return;
+        if (!InputsEnabled || !grounded) return;
 
         Special();
     }
@@ -325,14 +327,18 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    protected virtual void SetGrounded(bool value)
+    private void SetGrounded(bool value)
     {
-        if (groundedLeeway) return;
+        if (groundedLeeway && value) return;
 
         grounded = value;
 
         anim.SetBool("Grounded", value);
+
+        OnSetGrounded(value);
     }
+
+    protected virtual void OnSetGrounded(bool value) { }
 
     protected void SetGroundedLeeway(float duration)
     {

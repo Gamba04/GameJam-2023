@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c1935a353ab4445a8180dec3954f72, type: 3}
   m_Name: LevelsSetup
   m_EditorClassIdentifier: 
-  currentLevel: 0
+  currentLevel: 2
   levels:
   - name: Left
     tag: 0
