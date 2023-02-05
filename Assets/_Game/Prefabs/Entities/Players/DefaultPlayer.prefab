@@ -154,6 +154,10 @@ MonoBehaviour:
   jumpSpeed: 10
   terminalVelocity: 7
   directionSpeed: 10
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 4096
+  interactionRadius: 4
   worldLayer: 11
   groundCollisionHeight: 0.1
   grounded: 0

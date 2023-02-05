@@ -41,7 +41,15 @@ public class GplayUI : UIManager
         Instance.pauseController.SetVisible(value);
     }
 
+    /// <summary> Set UI overlay for interactions available. </summary>
+    public static void OnSetInteractionOverlay(bool value)
+    {
+
+    }
+
     #endregion
+
+    // ----------------------------------------------------------------------------------------------------------------------------
 
     #region Public Methods
 

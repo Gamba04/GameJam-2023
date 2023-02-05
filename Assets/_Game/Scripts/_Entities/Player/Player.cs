@@ -36,6 +36,10 @@ public abstract class Player : MonoBehaviour
 
     [Space]
     [SerializeField]
+    private LayerMask interactableMask;
+    [SerializeField]
+    private float interactionRadius;
+    [SerializeField]
     private int worldLayer;
     [SerializeField]
     private float groundCollisionHeight;
@@ -45,6 +49,10 @@ public abstract class Player : MonoBehaviour
     private bool grounded;
     [ReadOnly, SerializeField]
     private Vector3 targetDir;
+
+    private List<IInteractable> interactables;
+
+    private bool InteractionsAvailable => interactables.Count > 0;
 
     public bool Active { get => active; set => active = value; }
 
@@ -62,6 +70,7 @@ public abstract class Player : MonoBehaviour
         input.onMovement += OnMovement;
         input.onJump += OnJump;
         input.onSpecial += OnSpecial;
+        input.onInteract += OnInteract;
     }
 
     private void OtherStart()
@@ -78,6 +87,7 @@ public abstract class Player : MonoBehaviour
     private void Update()
     {
         DirectionUpdate();
+        InteractableUpdate();
     }
 
     private void DirectionUpdate()
@@ -85,6 +95,23 @@ public abstract class Player : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Mathf.Min(directionSpeed * Time.deltaTime, 1));
+    }
+
+    private void InteractableUpdate()
+    {
+        List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, interactionRadius, interactableMask));
+
+        foreach (Collider collider in colliders)
+        {
+            IInteractable target = collider.GetComponentInParent<IInteractable>();
+
+            if (target != null)
+            {
+                interactables.Add(target);
+            }
+        }
+
+        GplayUI.OnSetInteractionOverlay(interactables.Count > 0);
     }
 
     #endregion
@@ -143,6 +170,11 @@ public abstract class Player : MonoBehaviour
     protected virtual void OnSpecial()
     {
         anim.SetTrigger("Special");
+    }
+
+    protected virtual void OnInteract()
+    {
+        interactables.ForEach(interactable => interactable.Interact());
     }
 
     #endregion
