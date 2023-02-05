@@ -35,8 +35,6 @@ public class StrongPlayer : Player
 
         currentBlock = null;
 
-        if (!InputsEnabled) return;
-
         List<Collider> colliders = new List<Collider>(Physics.OverlapSphere(transform.position, detectionRadius, detectionLayer));
 
         foreach (Collider collider in colliders)
@@ -58,7 +56,7 @@ public class StrongPlayer : Player
 
     private void SpecialUpdate()
     {
-        if (state != State.Special) return;
+        if (state != State.Special || !dragging) return;
 
         currentBlock.Drag(transform.position + transform.forward * blockOffset.x + transform.up * blockOffset.y);
     }
