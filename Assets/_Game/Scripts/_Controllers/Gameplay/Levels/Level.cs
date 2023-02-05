@@ -23,6 +23,8 @@ public class Level : MonoBehaviour
     [ReadOnly, SerializeField]
     private Player activePlayer;
 
+    private Timer.CancelRequest onCancelPlayerSwitch = new Timer.CancelRequest();
+
     public event Action<Player> onSetActivePlayer;
     public event Action<LevelTag> onLoadLevel;
 
@@ -64,16 +66,23 @@ public class Level : MonoBehaviour
         if (activePlayer != null) activePlayer.Root();
         activePlayer = player;
 
-        Timer.CallOnDelay(() => player.Unroot(), rootDelay, "Root transition");
+        Timer.CallOnDelay(() => player.Unroot(), rootDelay, onCancelPlayerSwitch, "Root transition");
 
         onSetActivePlayer?.Invoke(player);
     }
 
     private void OnLoadLevel(LevelTag levelTag)
     {
+        onCancelPlayerSwitch.Cancel();
+
         activePlayer.Root();
 
-        onLoadLevel?.Invoke(levelTag);
+        GplayUI.SetFade(true, FadeColor.Default, onTransitionEnd: () =>
+        {
+            onLoadLevel?.Invoke(levelTag);
+
+            GplayUI.SetFade(false, FadeColor.Default);
+        });
     }
 
     #endregion

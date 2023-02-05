@@ -16,8 +16,13 @@ public class Door : MonoBehaviour
     {
         if (activated) return;
 
-        activated = true;
+        Player target = other.GetComponentInParent<Player>();
 
-        onLoadLevel?.Invoke(targetLevel);
+        if (target != null)
+        {
+            activated = true;
+
+            onLoadLevel?.Invoke(targetLevel);
+        }
     }
 }
