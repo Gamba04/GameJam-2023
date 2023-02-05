@@ -7,7 +7,9 @@ public class GaiserButton : MonoBehaviour, IInteractable
     [SerializeField] 
     private Gaiser gaiser;
 
-    public void Interact()
+    public bool Enabled => true;
+
+    public void Interact(Player player)
     {
         gaiser.SetState(!gaiser.GetState());
     }
